@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-recuperar-clave',
-  standalone: true,
-  imports: [],
+  standalone: false,
   templateUrl: './recuperar-clave.component.html',
   styleUrl: './recuperar-clave.component.css'
 })
