@@ -1,22 +1,31 @@
 
   <div class="container mx-auto max-w-md p-10 h-max bg-nav mt-10 rounded-xl">
-    <h1 class="text-3xl font-bold text-center mt-5">INICIAR SESIÓN</h1>
+    <h1 class="text-3xl font-junge text-moradoTitulo font-bold text-center mt-3 mb-7">Iniciar Sesión</h1>
     <form class="mt-2">
-      <div class="mb-3">
-        <input type="email" id="email" name="email" class="form-input w-full mt-1 border border-gray-300 rounded-md py-2 px-4">
-      </div>
-
-      <div class="mb-3">
-        <input type="password" id="password" name="password" class="form-input w-full mt-1 border border-gray-300 rounded-md py-2 px-4">
-      </div>
-
-      <div class="flex justify-between mt-4">
-        <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600">Siguiente</button>
-        <a href="#" class="text-blue-500 font-bold">Olvidé mi contraseña</a>
-      </div>
-    </form>
-
-    <div class="mt-4 text-center">
-      <p>¿No tienes una cuenta? <a href="#" class="text-blue-500 font-bold">Regístrate</a></p>
+    <div class="flex items-center border-b border-gray-300 py-2 m-5">
+      <svg class="w-6 h-6 text-moradoOscuro dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17 6h-2V5h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2h-.541A5.965 5.965 0 0 1 14 10v4a1 1 0 1 1-2 0v-4c0-2.206-1.794-4-4-4-.075 0-.148.012-.22.028C7.686 6.022 7.596 6 7.5 6A4.505 4.505 0 0 0 3 10.5V16a1 1 0 0 0 1 1h7v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3h5a1 1 0 0 0 1-1v-6c0-2.206-1.794-4-4-4Zm-9 8.5H7a1 1 0 1 1 0-2h1a1 1 0 1 1 0 2Z"/>
+      </svg>
+      <input formControlName="usuario" id="email" type="email" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Correo electrónico" required="">
     </div>
+    <div class="flex items-center border-b border-gray-300 py-2 m-5">
+      <svg class="w-6 h-6 text-moradoOscuro dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path fill-rule="evenodd" d="M8 10V7a4 4 0 1 1 8 0v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1Zm2-3a2 2 0 1 1 4 0v3h-4V7Zm2 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z" clip-rule="evenodd"/>
+      </svg>
+      <input formControlName="clave" id="password" type="password" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="********" required="">
+    </div>
+    <div class="mb-4">
+      <button class="bg-moradoOscuro hover:bg-purple-900 text-white font-bold py-2 px-3 rounded w-full" type="button">
+          Identificar
+      </button>
   </div>
+    </form>
+    <div class="flex items-center justify-between">
+      <a routerLink="/seguridad/crear-usuario" class="inline-block align-baseline font-bold text-sm text-moradoTitulo hover:text-purple-900" href="#">
+          Registrarse
+      </a>
+      <a routerLink="/seguridad/recuperar-clave" class="inline-block align-baseline font-bold text-sm text-moradoTitulo hover:text-purple-900">
+          Olvidé mi contraseña
+      </a>
+  </div>
+</div>
