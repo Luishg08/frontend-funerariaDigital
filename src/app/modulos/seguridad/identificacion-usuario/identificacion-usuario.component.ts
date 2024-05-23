@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './identificacion-usuario.component.css'
 })
 export class IdentificacionUsuarioComponent {
+  constructor() { }
 
+  ngOnInit() {
+  }
 }

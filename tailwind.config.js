@@ -7,7 +7,15 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        "nav": "#EEEEEE" 
+        "nav": "#EEEEEE",
+        "registrarse": "#3A045B",
+        "moradoOscuro": "#3A045B",
+        "moradoTitulo": "#732897",
+        "grisfondo": "#EEEEEE"
+      },
+      fontFamily:{
+        "junge": ['Junge', 'sans-serif'],
+        "lateff": ['Lateef', 'cursive']
       }
     },
   },
