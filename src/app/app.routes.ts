@@ -17,6 +17,10 @@ export const routes: Routes = [
         loadChildren: ()=> import("./modulos/seguridad/seguridad.module").then(modulo => modulo.SeguridadModule)
     },
     {
+        path: 'logica-negocio',
+        loadChildren: ()=> import("./modulos/seguridad/seguridad.module").then(modulo => modulo.SeguridadModule)
+    },
+    {
         path: '**',
         component: RutanoencontradaComponent
     },

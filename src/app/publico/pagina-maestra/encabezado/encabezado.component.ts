@@ -11,4 +11,15 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class EncabezadoComponent {
 
+  sesionActiva:boolean = false
+
+
+  constructor() {
+  }
+
+  ngOnInit(): void {
+    // initFlowbite();
+  }
+
+  
 }

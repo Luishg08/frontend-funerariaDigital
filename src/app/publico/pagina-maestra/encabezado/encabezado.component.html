@@ -1,7 +1,7 @@
-<nav class="bg-nav border-gray-200 dark:bg-gray-900 dark:border-gray-700 h-30" >
+<nav class="bg-nav border-gray-200 dark:bg-gray-900 dark:border-gray-700 w-full" >
       <div class="flex flex-wrap items-center justify-between mx-auto p-3 w-100">
-      <a routerLink = "/inicio" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="https://i.ibb.co/6m34CFd/Logo-Funeraria.jpg" alt="Logo Funeraria" class="h-20  w-100">
+      <a routerLink = "/inicio" class="flex items-center space-x-3 rtl:space-x-reverse ml-10">
+          <img src="https://i.ibb.co/WDF79kn/logo-Funeraria.png" alt="Logo Funeraria" class="h-20  w-100">
           <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
       </a>
       <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
@@ -23,7 +23,7 @@
               <div id="dropdownNavbar" class="z-10 hidden font-normal bg-nav divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                   <ul class="bg-nav py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Solicitar Servicio Funerario</a>
+                      <a onclick="verificarRegistrado()" routerLink="/solicitar-servicio-funerario" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Solicitar Servicio Funerario</a>
                     </li>
                     <li>
                       <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Planes</a>
@@ -42,7 +42,7 @@
           </li>
           <li>
             <li>
-              <button type="button" class="mr-10 bg-registrarse block py-2 px-3 md:py-1 md:px-5 w-100 rounded-md text-white">Regístrate</button>
+              <button *ngIf="!sesionActiva"  type="button" class="mr-10 bg-registrarse block py-2 px-3 md:py-1 md:px-5 w-100 rounded-md text-white">Regístrate</button>
             </li>
         </ul>
       </div>
