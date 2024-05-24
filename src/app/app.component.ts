@@ -7,11 +7,13 @@ import { PieDePaginaComponent } from './publico/pagina-maestra/pie-de-pagina/pie
 import { InicioComponent } from './publico/inicio/inicio.component';
 import { RutanoencontradaComponent } from './publico/errores/rutanoencontrada/rutanoencontrada.component';
 import { CommonModule } from '@angular/common';
+import { MenuLateralComponent } from './publico/pagina-maestra/menu-lateral/menu-lateral.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, PieDePaginaComponent, RouterLink, EncabezadoComponent, InicioComponent, RutanoencontradaComponent],
+  imports: [CommonModule, RouterOutlet, PieDePaginaComponent, RouterLink, EncabezadoComponent, InicioComponent, RutanoencontradaComponent, MenuLateralComponent, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -29,5 +31,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     initFlowbite();
+    
   }
 }

@@ -21,6 +21,10 @@ export const routes: Routes = [
         loadChildren: ()=> import("./modulos/seguridad/seguridad.module").then(modulo => modulo.SeguridadModule)
     },
     {
+        path: 'atencion',
+        loadChildren: ()=> import("./modulos/atencion/atencion.module").then(modulo => modulo.AtencionModule)
+    },
+    {
         path: '**',
         component: RutanoencontradaComponent
     },

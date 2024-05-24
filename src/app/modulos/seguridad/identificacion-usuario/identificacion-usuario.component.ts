@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SeguridadService } from '../../../servicios/seguridad.service';
+import { UsuarioModel } from '../../../modelos/usuario.model';
 
 @Component({
   selector: 'app-identificacion-usuario',
@@ -11,7 +13,8 @@ export class IdentificacionUsuarioComponent {
   fGroup: FormGroup=new FormGroup({});
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private servicioSeguridad: SeguridadService
   ) { }
 
   ngOnInit() {
@@ -30,6 +33,18 @@ export class IdentificacionUsuarioComponent {
       alert('Debe ingresar los datos requeridos');
     }else{
       alert('Usuario identificado');
+      let usuario = this.obtenerFormGroup['usuario'].value
+      let clave = this.obtenerFormGroup['clave'].value
+      this.servicioSeguridad.IdentificarUsuario(usuario,clave).subscribe({
+        next: (data:UsuarioModel) => {
+          console.log(data);
+          
+        },
+        error: (error) => {
+          console.log(error);
+          
+        }
+      })
     }
     
   }
