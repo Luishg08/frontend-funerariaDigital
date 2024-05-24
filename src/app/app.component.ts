@@ -7,13 +7,14 @@ import { PieDePaginaComponent } from './publico/pagina-maestra/pie-de-pagina/pie
 import { InicioComponent } from './publico/inicio/inicio.component';
 import { RutanoencontradaComponent } from './publico/errores/rutanoencontrada/rutanoencontrada.component';
 import { CommonModule } from '@angular/common';
+import { MenuLateralComponent } from "./publico/pagina-maestra/menu-lateral/menu-lateral.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, PieDePaginaComponent, RouterLink, EncabezadoComponent, InicioComponent, RutanoencontradaComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    imports: [CommonModule, RouterOutlet, PieDePaginaComponent, RouterLink, EncabezadoComponent, InicioComponent, RutanoencontradaComponent, MenuLateralComponent]
 })
 export class AppComponent implements OnInit {
   title = 'funerariaDigital';
