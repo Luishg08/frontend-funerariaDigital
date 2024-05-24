@@ -27,7 +27,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/funcionesM.js"
+            ],
             "server": "src/main.server.ts"
           },
           "configurations": {
