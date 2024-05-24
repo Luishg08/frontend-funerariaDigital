@@ -98,6 +98,13 @@ export class SeguridadService {
       return true;
     }
 
+
+    RecuperarClavePorUsuario(usuario: string): Observable<UsuarioModel>{
+      return this.http.post<UsuarioModel>(`${this.urlBase}recuperar-clave`, {
+        correo: usuario
+      });
+    }
+
     /**
      * Administracion de ls sesion de usuario
      */
@@ -120,6 +127,16 @@ export class SeguridadService {
       return this.datosUsuarioValidado.next(datos);
     }
 
-
+    /**
+     * Obtener el usuario y clave del local storage
+     */
+    ObtenerUsuarioClaveLS():{usuario:string, clave:string}{
+      let datosLS= localStorage.getItem('datos-usuario');
+      if(datosLS){
+        let datos= JSON.parse(datosLS);
+        return {usuario: datos.correo, clave: datos.clave}
+      }else{
+        return {usuario:'', clave:''}
+      }
 }
-
+}
