@@ -3,11 +3,15 @@
 
 <div class="container">
 
+<app-menu-lateral>
+    
+</app-menu-lateral>
+    
 <router-outlet/>
 
 <router-outlet />
 
 </div>
-<app-pie-de-pagina *ngIf = "rutaActual == '/inicio'">
+<app-pie-de-pagina *ngIf="rutaActual !== '/seguridad/identificar-usuario' && rutaActual !== '/crear-usuario'">
 
 </app-pie-de-pagina>

@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ConfiguracionRutasBackend } from '../config/configuracion.rutas.backend';
 import { UsuarioModel } from '../modelos/usuario.model';
 import { UsuarioValidadoModel } from '../modelos/usuario.validado.model';
+import { UsuarioCambioClaveModel } from '../modelos/usuario.cambio.clave.model';
+import { UsuarioPqrsModel } from '../modelos/usuario.pqrs.model';
 
 @Injectable({
   providedIn: 'root'
@@ -98,6 +100,13 @@ export class SeguridadService {
       return true;
     }
 
+
+    RecuperarClavePorUsuario(usuario: string): Observable<UsuarioModel>{
+      return this.http.post<UsuarioModel>(`${this.urlBase}recuperar-clave`, {
+        correo: usuario
+      });
+    }
+
     /**
      * Administracion de ls sesion de usuario
      */
@@ -120,6 +129,67 @@ export class SeguridadService {
       return this.datosUsuarioValidado.next(datos);
     }
 
+    /**
+     * Obtener el usuario y clave del local storage
+     */
+    ObtenerDatosUsuarioClaveLS():UsuarioModel | null{
+      let datosLS= localStorage.getItem('datos-usuario');
+      if(datosLS){
+        let datos= JSON.parse(datosLS);
+        this.VerificarClaveActual(datos.clave);
+        this.CompararClaves(datos.claveNueva, datos.confirmacionClave);
+        return datos
+      }else{
+        return null
+      }
+    }
+  
+    /**
+     * Verifica que la clave no sea invalida
+     * @param clave clave del usuario
+     * @returns si la clave es valida
+     */
+    VerificarClaveActual(clave:string):boolean{
+      if(clave === ''){
+        return false
+      }else{
+        return true
+      }
+    }
 
+    /**
+     * Comparar clave nueva sea igual que la clave de confirmacion
+     */
+    CompararClaves(claveNueva:string, confirmacionClave:string):boolean{
+      if(claveNueva === confirmacionClave){
+        return true
+      }else{
+        return false
+      }
+    }
+    /**
+     * Cambiar clave
+     * @param idUsuario 
+     * @param claveNueva 
+     * @returns 
+     */
+    CambiarClave(idUsuario: string, claveNueva: string): Observable<UsuarioCambioClaveModel>{
+      return this.http.post<UsuarioCambioClaveModel>(`${this.urlBase}cambiar-clave`, {
+        usuarioId: idUsuario,
+        clave: claveNueva
+    });
+    }
+
+    enviarMensajePqrs(correo:string, nombre:string, tipo:string, mensaje:string): Observable<UsuarioPqrsModel>{
+      return this.http.post<UsuarioPqrsModel>(`${this.urlBase}enviar-PQRS`, {
+        correoPersona: correo,
+        nombrePersona: nombre,
+        tipoMensaje: tipo,
+        contenido: mensaje
+      });
+    }
+    
+    RegistrarUsuarioPublico(datos:any): Observable<UsuarioModel>{
+      return this.http.post<UsuarioModel>(`${this.urlBase}usuario-publico`, datos);
+    }
 }
-

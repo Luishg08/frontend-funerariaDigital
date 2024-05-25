@@ -51,7 +51,7 @@ export class IdentificacionUsuarioComponent {
           }
         }         
       },
-        error: (error) => {
+        error: (error: any) => {
           console.log(error);
           
         }

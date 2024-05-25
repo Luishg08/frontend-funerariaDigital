@@ -30,7 +30,7 @@
                     </li>
                     <!-- Boton Planes -->
                     <li>
-                      <a href="#" *ngIf="!sesionActiva" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Planes</a>
+                      <a routerLink="/parametros/adquirir-plan" *ngIf="!sesionActiva" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Planes</a>
                     </li>
                     <!-- Boton servicio traslado -->
                     <li>
@@ -48,17 +48,25 @@
             <ul class="bg-nav py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
               <!-- Boton Nosostros -->
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Nosotros</a>
+                <a routerLink="/nosotros" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Nosotros</a>
               </li>
               <!-- Boton ayuda -->
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ayuda</a>
+                <a routerLink="/atencion/ayuda" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ayuda</a>
               </li>
             </ul>
         </div>
         <!-- Boton Iniciar sesion -->
           <li>
             <a routerLink="/seguridad/identificar-usuario" *ngIf="!sesionActiva" class="mt-0.5 block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-moradoTitulo md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Iniciar Sesión</a>
+          </li>
+          <!-- Boton Cerrar Sesión -->
+          <li>
+            <a routerLink="/seguridad/cerrar-sesion"  class="mt-0.5 block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-moradoTitulo md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cerrar Sesión</a>
+          </li>
+          <!-- Boton Cambiar Contraseña -->
+          <li>
+            <a routerLink="/seguridad/cambiar-clave" *ngIf="sesionActiva" class="mt-0.5 block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-moradoTitulo md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cambiar Contraseña</a>
           </li>
           <!-- Boton registrarse -->
           <li>
@@ -67,7 +75,7 @@
           <!-- Boton cerrar sesion -->
           <li>
             <button routerLink="/seguridad/cerrar-sesion" *ngIf="sesionActiva" type="button" class="mr-10 bg-registrarse block py-2 px-3 md:py-1 md:px-5 w-100 rounded-md text-white">Cerrar Sesión</button>
-        </li>
+        </li>            
         </ul>
       </div>
     </div>

@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   rutaActual: string = '';
 
   constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationStart) {
         this.rutaActual = event.url;
       }
