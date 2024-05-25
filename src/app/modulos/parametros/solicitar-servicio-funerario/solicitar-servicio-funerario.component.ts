@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ParametrosService } from '../../../servicios/parametros.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-solicitar-servicio-funerario',
@@ -21,14 +22,22 @@ export class SolicitarServicioFunerarioComponent {
   ngOnInit() 
   {
     this.cargarDatos();
-    (document.getElementById('hora_ingreso') as HTMLInputElement).value = "15:00"
+    this.ConstruirFormulario();
     
   }
 
   ConstruirFormulario(){
     this.fGroup = this.fb.group({
-      usuario: ['', [Validators.required, Validators.email]],
-      clave: ['', [Validators.required]]
+      beneficiario: ["",Validators.required],
+      departamentoCuerpo: ["",Validators.required],
+      ciudadCuerpo: ["",Validators.required],
+      sepultura: ["",Validators.required],
+      fecha_ingreso: ["",Validators.required],
+      hora_ingreso: ["00:00",Validators.required],
+      departamentoServicio: ["",Validators.required],
+      ciudadServicio: ["",Validators.required],
+      sede: ["",Validators.required],
+      sala: ["",Validators.required],
     });
   }
 
@@ -89,10 +98,10 @@ export class SolicitarServicioFunerarioComponent {
    selectCiudad!.innerHTML = '';
    let selectSede= document.getElementById('sede');
     selectSede!.innerHTML = '';
-    selectSede!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Escoja una sede</option>'
+    selectSede!.innerHTML = '<option class="text-gray-400"  disabled selected hidden>Escoja una sede</option>'
     let selectSala= document.getElementById('sala');
     selectSala!.innerHTML = '';
-    selectSala!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Seleccione una de las salas</option>'
+    selectSala!.innerHTML = '<option class="text-gray-400"  disabled selected hidden>Seleccione una de las salas</option>'
  
     if((document.getElementById('departamentoCuerpo') as HTMLInputElement).value !== 'no'){
     let idDepartamento = Number((document.getElementById('departamentoCuerpo') as HTMLInputElement).value);
@@ -100,7 +109,7 @@ export class SolicitarServicioFunerarioComponent {
       next: (data) => {
         //eliminar todos los elementos del select
         selectCiudad!.innerHTML= '';
-        selectCiudad!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Escoja una ciudad</option>'
+        selectCiudad!.innerHTML = '<option class="text-gray-400" disabled selected hidden>Escoja una ciudad</option>'
         data.forEach((ciudad) => {
           let option = document.createElement('option');
           option.value= ciudad.idCiudad!.toString();
@@ -122,7 +131,7 @@ export class SolicitarServicioFunerarioComponent {
       next: (data) => {
         //eliminar todos los elementos del select
         selectCiudadServicio!.innerHTML= '';
-        selectCiudadServicio!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Escoja una ciudad</option>'
+        selectCiudadServicio!.innerHTML = '<option class="text-gray-400" value="" disabled selected hidden>Escoja una ciudad</option>'
         data.forEach((ciudad) => {
           let option = document.createElement('option');
           option.value= ciudad.idCiudad!.toString();
@@ -140,14 +149,14 @@ export class SolicitarServicioFunerarioComponent {
 cargarSedesDeUnaCiudad(){
   let selectSala= document.getElementById('sala');
   selectSala!.innerHTML = '';
-  selectSala!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Seleccione una de las salas</option>'
+  selectSala!.innerHTML = '<option class="text-gray-400" value="" disabled selected hidden>Seleccione una de las salas</option>'
   let selectSede= document.getElementById('sede');
   let idCiudad = Number((document.getElementById('ciudadServicio') as HTMLInputElement).value);
   this.servicioParametros.ObtenerSedesDeUnaCiudad(idCiudad).subscribe({
     next: (data) => {
       //eliminar todos los elementos del select
       selectSede!.innerHTML= '';
-      selectSede!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Escoja una sede</option>'
+      selectSede!.innerHTML = '<option class="text-gray-400" value="" disabled selected hidden>Escoja una sede</option>'
       data.forEach((sede) => {
         let option = document.createElement('option');
         option.value= sede.idSede!.toString();
@@ -168,7 +177,7 @@ cargarSalasDeUnaSede(){
     next: (data) => {
       //eliminar todos los elementos del select
       selectSala!.innerHTML= '';
-      selectSala!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Seleccione una de las salas</option>'
+      selectSala!.innerHTML = '<option class="text-gray-400" value="" disabled selected hidden>Seleccione una de las salas</option>'
       data.forEach((sala) => {
         let option = document.createElement('option');
         option.value= sala.idSala!.toString();
@@ -181,5 +190,55 @@ cargarSalasDeUnaSede(){
     }
   })
 }
+
+get obtenerFormGroup(){
+  return this.fGroup.controls;
+}
+
+  SolicitarServicioFunerario(){
+    if(this.fGroup.invalid){
+      alert('Debe ingresar los datos requeridos');
+      return
+    }
+    const selectBeneficiario = document.getElementById('beneficiario') as HTMLSelectElement;
+    const beneficiarioText = selectBeneficiario.options[selectBeneficiario.selectedIndex].text;
+    const confirmacion = confirm(`Va a solicitar un servicio funerario para su beneficiario(a) ${beneficiarioText}. ¿Desea continuar con la solicitud?`);
+    if (confirmacion) {
+      console.log('Solicitud de servicio funerario enviada');
+      let ubicacion_cuerpo = Number(this.obtenerFormGroup['ciudadCuerpo'].value)
+      let tipo_sepultura = this.obtenerFormGroup['sepultura'].value;
+      let sala_id = Number(this.obtenerFormGroup['sala'].value)
+      let beneficiario_id = Number(this.obtenerFormGroup['beneficiario'].value)
+    
+      let fecha_hora_ingreso = `${this.obtenerFormGroup['fecha_ingreso'].value} ${this.obtenerFormGroup['hora_ingreso'].value}:00`;
+      let fecha = new Date(fecha_hora_ingreso);
+      fecha.setHours(fecha.getHours() + 1);
+
+      let year = fecha.getFullYear();
+      let month = ("0" + (fecha.getMonth() + 1)).slice(-2); // Los meses en JavaScript comienzan en 0, por lo que se suma 1
+      let day = ("0" + fecha.getDate()).slice(-2);
+      let hours = ("0" + fecha.getHours()).slice(-2);
+      let minutes = ("0" + fecha.getMinutes()).slice(-2);
+
+      let fecha_hora_salida = `${year}-${month}-${day} ${hours}:${minutes}:00`;
+
+      this.servicioParametros.solicitarServicioFunerario(ubicacion_cuerpo, tipo_sepultura, sala_id, beneficiario_id,fecha_hora_ingreso, fecha_hora_salida).subscribe({
+        next: (data:any) => {
+          if (data.message) {
+            console.log('Error al solicitar el servicio funerario:', data.message);
+            alert('Error al solicitar el servicio funerario: '+ data.message);
+          } else {
+            console.log(data);
+            
+          }
+          
+        },
+        error: (error) => {
+          console.log(error);
+          alert('Error al solicitar el servicio funerario');
+        }
+      })
+    } 
+  }
 
 }

@@ -7,6 +7,7 @@ import { DepartamentoModel } from '../modelos/Departamento.model';
 import { CiudadModel } from '../modelos/ciudad.model';
 import { SedeModel } from '../modelos/sede.model';
 import { SalaModel } from '../modelos/sala.model';
+import { ServicioFunerarioModel } from '../modelos/servicio.funerario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -54,4 +55,20 @@ export class ParametrosService {
       idSede: idSede
     });
   }
+
+  solicitarServicioFunerario(ubicacion_cuerpo: number, tipo_sepultura: string, sala_id: number, beneficiario_id: number, 
+     fecha_hora_ingreso: string, fecha_hora_salida: string,): Observable<Object>{
+    return this.http.post(`${this.urlBase}solicitar-servicio`,{
+      ubicacion_cuerpo: ubicacion_cuerpo,
+      tipo_sepultura: tipo_sepultura,
+      servicio_traslado: false,
+      fecha_hora_ingreso: fecha_hora_ingreso,
+      fecha_hora_salida: fecha_hora_salida,
+      codigo_unico: "",
+      notificado: false,
+      estado_codigo_unico: false,
+      beneficiarioId : beneficiario_id,
+      salaId: sala_id
+      })
+}
 }
