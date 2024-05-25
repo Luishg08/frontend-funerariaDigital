@@ -1,1 +1,29 @@
-<p>pqrs works!</p>
+
+<div class="container mx-auto max-w-md p-10 h-max bg-nav mt-10 rounded-xl">
+    <h1 class="text-3xl font-junge text-moradoTitulo font-bold text-center mt-3 mb-7">PQRS</h1>
+    <p class="text-center text-gray-600">Para nosotros, tu opinión es de suma importancia. Este espacio es para ti.</p>
+    <form [formGroup]="fGroup" class="mt-2">
+    <div class="flex items-center border-b border-gray-300 py-2 m-5">
+      <input formControlName="usuario" id="email" type="email" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Correo electrónico" >
+    </div>
+    <div class="flex items-center border-b border-gray-300 py-2 m-5">
+        <input formControlName="nombre" id="nombre" type="text" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Nombre" >
+      </div>
+    <div class="flex items-center border-b border-gray-300 py-2 m-5">
+        <select formControlName="tipo" id="tipo" type="text" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+          <option value="" class="text-gray-700">Tipo PQRS</option>
+          <option value="Petición">Petición</option>
+          <option value="Queja">Queja</option>
+          <option value="Reclamo">Reclamo</option>
+          <option value="Sugerencia">Sugerencia</option>
+        </select>
+      </div>
+      <div class="flex items-center border-b border-gray-300 py-2 m-5">
+        <textarea formControlName="mensaje" id="mensaje" rows="3" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Escribe tu mensaje"></textarea>      </div>
+    <div class="mb-4">
+      <button (click)="EnviarPQRS()" class="bg-moradoOscuro hover:bg-purple-900 text-white font-bold py-2 px-3 rounded w-full" type="button">
+          Enviar
+      </button>
+  </div>
+    </form>
+</div>

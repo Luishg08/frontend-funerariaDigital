@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SeguridadService } from '../../../servicios/seguridad.service';
 import { UsuarioModel } from '../../../modelos/usuario.model';
+import { MD5 } from 'crypto-js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-identificacion-usuario',
-  standalone: false,
   templateUrl: './identificacion-usuario.component.html',
   styleUrl: './identificacion-usuario.component.css'
 })
@@ -14,7 +15,8 @@ export class IdentificacionUsuarioComponent {
 
   constructor(
     private fb: FormBuilder,
-    private servicioSeguridad: SeguridadService
+    private servicioSeguridad: SeguridadService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -35,11 +37,20 @@ export class IdentificacionUsuarioComponent {
       alert('Usuario identificado');
       let usuario = this.obtenerFormGroup['usuario'].value
       let clave = this.obtenerFormGroup['clave'].value
-      this.servicioSeguridad.IdentificarUsuario(usuario,clave).subscribe({
+      let claveCifrada= MD5(clave).toString();
+      this.servicioSeguridad.IdentificarUsuario(usuario,claveCifrada).subscribe({
         next: (data:UsuarioModel) => {
           console.log(data);
-          
-        },
+          if(data._id == undefined || data._id == null){
+            alert('Credenciales incorrectas o falta la validación del correo electrónico')
+          }else{
+
+          console.log(data);
+          if(this.servicioSeguridad.AlmacenarDatosUsuarioIdentificado(data)){
+            this.router.navigate(['/seguridad/identificacion-twofa'])
+          }
+        }         
+      },
         error: (error) => {
           console.log(error);
           

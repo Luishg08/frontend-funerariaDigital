@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IdentificacionTwofaComponent } from './identificacion-twofa/identificacion-twofa.component';
 import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
 import { CrearUsuarioComponent } from './usuario/crear-usuario/crear-usuario.component';
+import { CambiarClaveComponent } from './cambiar-clave/cambiar-clave.component';
+import { RegistroPublicoUsuariosComponent } from './registro-publico-usuarios/registro-publico-usuarios.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { CrearUsuarioComponent } from './usuario/crear-usuario/crear-usuario.com
     IdentificacionUsuarioComponent,
     IdentificacionTwofaComponent,
     RecuperarClaveComponent, 
-    CrearUsuarioComponent
+    CrearUsuarioComponent,
+    CambiarClaveComponent, 
+    RegistroPublicoUsuariosComponent
   ],
   imports: [
     CommonModule,

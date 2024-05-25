@@ -1,0 +1,23 @@
+
+<div class="container mx-auto max-w-md p-10 h-max bg-nav mt-10 rounded-xl">
+    <h1 class="text-3xl font-junge text-moradoTitulo font-bold text-center mt-3 mb-7">Cambiar Contraseña</h1>
+    <form [formGroup]="fGroup" class="mt-2">
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <input formControlName="usuario" id="email" type="email" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Correo electrónico">
+        </div>
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <input formControlName="claveActual" id="claveActual" type="password" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Contraseña Actual">
+        </div>
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <input formControlName="claveNueva" id="claveNueva" type="password" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Contraseña nueva">
+        </div>
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <input formControlName="confirmacionClave" id="confirmacionClave" type="password" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Confimar Contraseña">
+        </div>
+        <div class="mb-4">
+            <button (click)="CambiarClave()" class="bg-moradoOscuro hover:bg-purple-900 text-white font-bold py-2 px-3 rounded w-full" type="button">
+                Continuar
+            </button>
+        </div>
+    </form>
+</div>
