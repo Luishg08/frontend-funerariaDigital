@@ -86,6 +86,13 @@ export class SolicitarServicioFunerarioComponent {
 
   cargarCiudadesDepartamento(){
    let selectCiudad= document.getElementById('ciudadCuerpo');
+   selectCiudad!.innerHTML = '';
+   let selectSede= document.getElementById('sede');
+    selectSede!.innerHTML = '';
+    selectSede!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Escoja una sede</option>'
+    let selectSala= document.getElementById('sala');
+    selectSala!.innerHTML = '';
+    selectSala!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Seleccione una de las salas</option>'
  
     if((document.getElementById('departamentoCuerpo') as HTMLInputElement).value !== 'no'){
     let idDepartamento = Number((document.getElementById('departamentoCuerpo') as HTMLInputElement).value);
@@ -93,6 +100,7 @@ export class SolicitarServicioFunerarioComponent {
       next: (data) => {
         //eliminar todos los elementos del select
         selectCiudad!.innerHTML= '';
+        selectCiudad!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Escoja una ciudad</option>'
         data.forEach((ciudad) => {
           let option = document.createElement('option');
           option.value= ciudad.idCiudad!.toString();
@@ -114,6 +122,7 @@ export class SolicitarServicioFunerarioComponent {
       next: (data) => {
         //eliminar todos los elementos del select
         selectCiudadServicio!.innerHTML= '';
+        selectCiudadServicio!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Escoja una ciudad</option>'
         data.forEach((ciudad) => {
           let option = document.createElement('option');
           option.value= ciudad.idCiudad!.toString();
@@ -129,12 +138,16 @@ export class SolicitarServicioFunerarioComponent {
 
 }
 cargarSedesDeUnaCiudad(){
+  let selectSala= document.getElementById('sala');
+  selectSala!.innerHTML = '';
+  selectSala!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Seleccione una de las salas</option>'
   let selectSede= document.getElementById('sede');
   let idCiudad = Number((document.getElementById('ciudadServicio') as HTMLInputElement).value);
   this.servicioParametros.ObtenerSedesDeUnaCiudad(idCiudad).subscribe({
     next: (data) => {
       //eliminar todos los elementos del select
       selectSede!.innerHTML= '';
+      selectSede!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Escoja una sede</option>'
       data.forEach((sede) => {
         let option = document.createElement('option');
         option.value= sede.idSede!.toString();
@@ -155,6 +168,7 @@ cargarSalasDeUnaSede(){
     next: (data) => {
       //eliminar todos los elementos del select
       selectSala!.innerHTML= '';
+      selectSala!.innerHTML = '<option class="text-gray-400" value="no" disabled selected hidden>Seleccione una de las salas</option>'
       data.forEach((sala) => {
         let option = document.createElement('option');
         option.value= sala.idSala!.toString();
