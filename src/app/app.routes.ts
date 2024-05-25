@@ -18,11 +18,15 @@ export const routes: Routes = [
     },
     {
         path: 'logica-negocio',
-        loadChildren: ()=> import("./modulos/seguridad/seguridad.module").then(modulo => modulo.SeguridadModule)
+        loadChildren: ()=>  import("./modulos/seguridad/seguridad.module").then(modulo => modulo.SeguridadModule)
     },
     {
         path: 'atencion',
         loadChildren: ()=> import("./modulos/atencion/atencion.module").then(modulo => modulo.AtencionModule)
+    },
+    {
+        path: 'parametros',
+        loadChildren: ()=> import("./modulos/parametros/parametros.module").then(modulo => modulo.ParametrosModule)
     },
     {
         path: '**',
