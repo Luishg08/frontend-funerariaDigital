@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { InicioComponent } from './publico/inicio/inicio.component';
 import { RutanoencontradaComponent } from './publico/errores/rutanoencontrada/rutanoencontrada.component';
+import { NosotrosComponent } from './publico/nosotros/nosotros.component';
 
 export const routes: Routes = [ 
     {
@@ -27,6 +28,10 @@ export const routes: Routes = [
     {
         path: 'parametros',
         loadChildren: ()=> import("./modulos/parametros/parametros.module").then(modulo => modulo.ParametrosModule)
+    },
+    {
+        path: 'nosotros',
+        component: NosotrosComponent
     },
     {
         path: '**',
