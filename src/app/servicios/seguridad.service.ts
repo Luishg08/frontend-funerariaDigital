@@ -188,4 +188,8 @@ export class SeguridadService {
         contenido: mensaje
       });
     }
+    
+    RegistrarUsuarioPublico(datos:any): Observable<UsuarioModel>{
+      return this.http.post<UsuarioModel>(`${this.urlBase}usuario-publico`, datos);
+    }
 }

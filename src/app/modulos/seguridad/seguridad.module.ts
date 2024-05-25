@@ -9,6 +9,7 @@ import { IdentificacionTwofaComponent } from './identificacion-twofa/identificac
 import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
 import { CrearUsuarioComponent } from './usuario/crear-usuario/crear-usuario.component';
 import { CambiarClaveComponent } from './cambiar-clave/cambiar-clave.component';
+import { RegistroPublicoUsuariosComponent } from './registro-publico-usuarios/registro-publico-usuarios.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CambiarClaveComponent } from './cambiar-clave/cambiar-clave.component';
     IdentificacionTwofaComponent,
     RecuperarClaveComponent, 
     CrearUsuarioComponent,
-    CambiarClaveComponent
+    CambiarClaveComponent, 
+    RegistroPublicoUsuariosComponent
   ],
   imports: [
     CommonModule,
