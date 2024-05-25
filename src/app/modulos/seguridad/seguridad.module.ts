@@ -10,6 +10,7 @@ import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.compo
 import { CrearUsuarioComponent } from './usuario/crear-usuario/crear-usuario.component';
 import { CambiarClaveComponent } from './cambiar-clave/cambiar-clave.component';
 import { RegistroPublicoUsuariosComponent } from './registro-publico-usuarios/registro-publico-usuarios.component';
+import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
 
 
 @NgModule({

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './cerrar-sesion.component.css'
 })
 export class CerrarSesionComponent {
-
+    
   constructor(
     private servicoSeguridad: SeguridadService,
     private router: Router
