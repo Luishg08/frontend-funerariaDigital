@@ -4,5 +4,4 @@ export class UsuarioPqrsModel {
     tipo?: string="";
     mensaje?: string="";
 
-
 }
