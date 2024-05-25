@@ -1,0 +1,72 @@
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen w-100">
+    <div class="bg-white p-8 rounded shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-4 text-center">Solicita tu servicio funerario</h2>
+        <p class="text-center mb-6">Llena el siguiente formulario</p>
+        <form [formGroup]="fGroup">
+            <div class="mb-4">
+                <label for="beneficiario" class="block text-gray-700">Seleccionar beneficiario</label>
+                <select formControlName="beneficiario"   id="beneficiario" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="" disabled selected hidden>Seleccione un beneficiario</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="departamento" class="block text-gray-700">Departamento donde está el cuerpo</label>
+                <select formControlName="departamentoCuerpo" (change)= "cargarCiudadesDepartamento()" id="departamentoCuerpo" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" >
+                    <option value="" disabled selected hidden>Escoja un departamento</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="ciudad" class="block text-gray-700">Ciudad donde está el cuerpo</label>
+                <select formControlName="ciudadCuerpo" id="ciudadCuerpo" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" >
+                    <option value="" disabled selected hidden>Escoja una ciudad</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="sepultura" class="block text-gray-700">Tipo de sepultura</label>
+                <select formControlName="sepultura" id="sepultura" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" >
+                    <option value="" disabled selected hidden>Escoja un tipo de sepultura</option>
+                    <option value="Cremación">Cremación</option>
+                    <option value="Ataud">Ataúd</option>
+
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="fecha_ingreso" class="block text-gray-700">Fecha del servicio</label>
+                <input formControlName = "fecha_ingreso" type="date" id="fecha_ingreso" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" [attr.min] = "today" >
+            </div>
+            <div class="mb-4">
+                <label for="hora_ingreso" class="block text-gray-700">Hora de ingreso</label>
+                <input formControlName="hora_ingreso" type="time" id="hora_ingreso" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" >
+            </div>
+            <div class="mb-4">
+                <label for="departamento" class="block text-gray-700">Departamento donde desea que se realice el servicio</label>
+                <select formControlName="departamentoServicio"   (change)= "cargarCiudadesDepartamento()" id="departamentoServicio" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required >
+                    <option class="text-gray-400" value="" disabled selected hidden>Escoja un departamento</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="ciudadServicio" class="block text-gray-700">Ciudad donde desea que se realice el servicio</label>
+                <select formControlName="ciudadServicio"  (change)= "cargarSedesDeUnaCiudad()" id="ciudadServicio" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                    <option class="text-gray-400" value="" disabled selected hidden>Escoja una ciudad</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="sede" class="block text-gray-700">Sede donde desea que se realice el servicio</label>
+                <select formControlName="sede" (change)= "cargarSalasDeUnaSede()" id="sede" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                    <option class="text-gray-400" value="" disabled selected hidden>Escoja una sede</option>
+                </select>
+            </div>
+            <div class="mb-6">
+                <label for="sala" class="block text-gray-700">Salas disponibles</label>
+                <select formControlName="sala" id="sala" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                    <option class="text-gray-400" value="" disabled selected hidden >Escoja una sala</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button (click)="SolicitarServicioFunerario()" type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Enviar solicitud</button>
+            </div>
+        </form>
+    </div>
+</body>
+

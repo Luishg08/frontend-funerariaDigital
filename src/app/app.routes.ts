@@ -19,7 +19,7 @@ export const routes: Routes = [
     },
     {
         path: 'logica-negocio',
-        loadChildren: ()=> import("./modulos/seguridad/seguridad.module").then(modulo => modulo.SeguridadModule)
+        loadChildren: ()=>  import("./modulos/seguridad/seguridad.module").then(modulo => modulo.SeguridadModule)
     },
     {
         path: 'atencion',
