@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SeguridadService } from '../../../servicios/seguridad.service';
-import { nextTick } from 'process';
-import { error } from 'console';
+//import { nextTick } from 'process';
+//import { error } from 'console';
 import { UsuarioModel } from '../../../modelos/usuario.model';
 import { Router } from '@angular/router';
 

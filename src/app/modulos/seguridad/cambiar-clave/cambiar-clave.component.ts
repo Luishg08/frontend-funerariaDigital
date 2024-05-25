@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+//import { Observable } from 'rxjs';
 import { UsuarioModel } from '../../../modelos/usuario.model';
 import { SeguridadService } from '../../../servicios/seguridad.service';
 

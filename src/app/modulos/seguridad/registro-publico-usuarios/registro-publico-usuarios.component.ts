@@ -46,7 +46,7 @@ export class RegistroPublicoUsuariosComponent {
       next: (respuesta:UsuarioModel)=>{
         alert("Usuario registrado correctamente");
       },
-      error: (err)=>{
+      error: (err:any)=>{
         alert("Error al registrar usuario");
       }
     })

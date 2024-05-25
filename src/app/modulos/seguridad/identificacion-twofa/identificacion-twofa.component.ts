@@ -49,7 +49,7 @@ export class IdentificacionTwofaComponent {
           this.servicioSeguridad.AlmacenarDatosUsuarioValidado(datos)
           this.router.navigate([""])
         },
-        error: (error) => {
+        error: (error:any) => {
           console.log(error);
         }
       })
