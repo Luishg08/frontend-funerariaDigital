@@ -5,12 +5,10 @@ import { SeguridadService } from '../../../servicios/seguridad.service';
 import { nextTick } from 'process';
 import { UsuarioValidadoModel } from '../../../modelos/usuario.validado.model';
 import { error } from 'console';
-import { MenuLateralComponent } from '../menu-lateral/menu-lateral.component';
-
 @Component({
   selector: 'app-encabezado',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule, MenuLateralComponent],
+  imports: [RouterOutlet, RouterLink, CommonModule],
   templateUrl: './encabezado.component.html',
   styleUrl: './encabezado.component.css'
 })

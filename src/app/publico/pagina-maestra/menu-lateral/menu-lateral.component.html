@@ -1,10 +1,10 @@
 <div class="bg-nav">
-<a id="botontoggle" (click)="mostrarCorreoyNombre()" (click)="toggleMenuLateral()"   *ngIf="sesionActiva" routerLink="" class="w-full bg-nav">
-  <svg id="IconoMenu" class="w-6 h-6  text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
-  </svg>
-</a>
-</div>
+  <button id="botontoggle" (click)="mostrarCorreoyNombre()" (click)="toggleMenuLateral()"   *ngIf="sesionActiva" class="w-6 bg-nav">
+    <svg id="IconoMenu" class="w-6 h-6  text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
+    </svg>
+  </button>
+  </div>
 <div *ngIf="mostrarBarraLateral" >
  <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidenav">
    <div class="overflow-y-auto py-5 px-3 h-full bg-white border-r border-gray-200">
