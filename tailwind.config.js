@@ -11,7 +11,9 @@ module.exports = {
         "registrarse": "#3A045B",
         "moradoOscuro": "#3A045B",
         "moradoTitulo": "#732897",
-        "grisfondo": "#EEEEEE"
+        "grisfondo": "#EEEEEE", 
+        "moradoclaroboton": "#BB9CC0",
+        "moradoclarodivinicio": "#BB9CC0"
       },
       fontFamily:{
         "junge": ['Junge', 'sans-serif'],

@@ -5,14 +5,14 @@ import { SeguridadService } from '../../../servicios/seguridad.service';
 import { nextTick } from 'process';
 import { UsuarioValidadoModel } from '../../../modelos/usuario.validado.model';
 import { error } from 'console';
-import { MenuLateralComponent } from "../menu-lateral/menu-lateral.component";
+import { MenuLateralComponent } from '../menu-lateral/menu-lateral.component';
 
 @Component({
-    selector: 'app-encabezado',
-    standalone: true,
-    templateUrl: './encabezado.component.html',
-    styleUrl: './encabezado.component.css',
-    imports: [RouterOutlet, RouterLink, CommonModule, MenuLateralComponent]
+  selector: 'app-encabezado',
+  standalone: true,
+  imports: [RouterOutlet, RouterLink, CommonModule, MenuLateralComponent],
+  templateUrl: './encabezado.component.html',
+  styleUrl: './encabezado.component.css'
 })
 export class EncabezadoComponent {
 
@@ -20,13 +20,18 @@ export class EncabezadoComponent {
 
 
   constructor(
-    private servicioSeguridad: SeguridadService
+    private servicioSeguridad: SeguridadService,
   ) {}
 
   ngOnInit(): void {
     // initFlowbite();
     this.ValidarSesion();
   }
+
+  toggleMenuLateral() {
+  }
+
+
 
   ValidarSesion(){
     this.servicioSeguridad.ObtenerDatosSesion().subscribe({

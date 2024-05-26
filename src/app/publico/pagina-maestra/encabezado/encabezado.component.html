@@ -1,4 +1,4 @@
-<nav class="bg-nav border-gray-200 dark:bg-gray-900 dark:border-gray-700 w-full" >
+<nav class="bg-nav dark:bg-gray-900 dark:border-gray-700 w-full" >
       <div class="flex flex-wrap items-center justify-between mx-auto p-3 w-100">
       <a routerLink = "/inicio" class="flex items-center space-x-3 rtl:space-x-reverse ml-10">
           <img src="https://i.ibb.co/WDF79kn/logo-Funeraria.png" alt="Logo Funeraria" class="h-20  w-100">
@@ -66,7 +66,7 @@
           </li>
           <!-- Boton registrarse -->
           <li>
-              <button routerLink="/seguridad/crear-usuario" *ngIf="!sesionActiva"  type="button" class="mr-10 bg-registrarse block py-2 px-3 md:py-1 md:px-5 w-100 rounded-md text-white">Regístrate</button>
+              <button routerLink="/seguridad/registro-publico-usuarios" *ngIf="!sesionActiva"  type="button" class="mr-10 bg-registrarse block py-2 px-3 md:py-1 md:px-5 w-100 rounded-md text-white">Regístrate</button>
           </li>
           <!-- Boton cerrar sesion -->
           <li>
