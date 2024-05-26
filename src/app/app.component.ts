@@ -9,11 +9,16 @@ import { RutanoencontradaComponent } from './publico/errores/rutanoencontrada/ru
 import { CommonModule } from '@angular/common';
 import { MenuLateralComponent } from './publico/pagina-maestra/menu-lateral/menu-lateral.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, PieDePaginaComponent, RouterLink, EncabezadoComponent, InicioComponent, RutanoencontradaComponent, MenuLateralComponent, HttpClientModule],
+  imports: [CommonModule, RouterOutlet, PieDePaginaComponent, RouterLink, EncabezadoComponent, InicioComponent, RutanoencontradaComponent, MenuLateralComponent, HttpClientModule,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
