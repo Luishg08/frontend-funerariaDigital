@@ -8,6 +8,7 @@ import { CiudadModel } from '../modelos/ciudad.model';
 import { SedeModel } from '../modelos/sede.model';
 import { SalaModel } from '../modelos/sala.model';
 import { ServicioFunerarioModel } from '../modelos/servicio.funerario.model';
+import { ClienteModel } from '../modelos/cliente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -71,4 +72,24 @@ export class ParametrosService {
       salaId: sala_id
       })
 }
+
+  VerificarSiYaTieneCliente(usuarioId:string):Observable<ClienteModel>{
+    return this.http.post<ClienteModel>(`${this.urlBase}usuario-tiene-cliente`,{
+      idUsuario: usuarioId
+    });
+  }
+
+  crearCliente(nombre:string,apellido:string,documento:string,celular:string,correo:string):Observable<ClienteModel>{
+    let idUsuario= this.ObtenerIdUsuarioLS()
+    return this.http.post<ClienteModel>(`${this.urlBase}cliente`,{
+      nombre: nombre,
+      apellido: apellido,
+      documento: documento,
+      celular: celular,
+      correo: correo,
+      idUsuario: idUsuario,
+      estadoCliente: false
+    }
+    )
+  }
 }

@@ -1,1 +1,46 @@
-<p>crear-cliente works!</p>
+<div class="mx-auto w-1/2 bg-nav mt-5 py-2 px-3 rounded-xl">
+    <h1 class="text-2xl font-junge text-moradoTitulo font-extrabold text-center mt-3 mb-3">Aún no te has registrado como cliente</h1>
+    <h5 class="text-xs font-junge text-moradoTitulo font-bold text-center">¡Regístrate aquí y podrás afiliarte a nosotros!</h5>
+    <form [formGroup]="fbGroup" class="mt-2">
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
+              </svg>              
+            <input formControlName="correoCliente" id="email" type="email" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Correo electrónico">
+            <p class="text-sm text-gray-400">Correo donde quieres que te notifiquemos sobre tus servicios</p>
+        </div>
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+              </svg>              
+            <input formControlName="nombreCliente" id="primerNombre" type="text" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Nombre" required>
+            <p class="text-sm text-gray-400">Ingresa tu primer nombre</p>
+        </div>
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+              </svg>             
+            <input formControlName="apellidoCliente" id="segundoNombre" type="text" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Apellido">
+            <p class="text-sm text-gray-400">Ingresa tu primer apellido</p>
+        </div>
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9h3m-3 3h3m-3 3h3m-6 1c-.306-.613-.933-1-1.618-1H7.618c-.685 0-1.312.387-1.618 1M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm7 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"/>         
+            </svg>
+            <input formControlName="documentoCliente" id="primerApellido" type="text" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Documento" required>
+            <p class="text-sm text-gray-400">Ingresa el número de tu documento de identidad</p>
+        </div>
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 18h2M5.875 3h12.25c.483 0 .875.448.875 1v16c0 .552-.392 1-.875 1H5.875C5.392 21 5 20.552 5 20V4c0-.552.392-1 .875-1Z"/>
+              </svg>              
+            <input formControlName="celularCliente" id="celular" type="text" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Celular" required>
+            <p class="text-sm align-text-top text-gray-400">Ingresa tu celular al que quieres que te contactemos</p>
+        </div>
+        <div class="mb-4">
+            <button (click)="CrearCliente()" class="bg-moradoOscuro hover:bg-purple-900 text-white font-bold py-2 px-3 rounded w-full" type="button">
+                Regístrate como cliente con un click
+            </button>
+        </div>
+    </form>
+</div>

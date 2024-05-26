@@ -6,11 +6,13 @@ import { SolicitarServicioFunerarioComponent } from './solicitar-servicio-funera
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdquirirPlanComponent } from './adquirir-plan/adquirir-plan.component';
+import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente.component';
 
 @NgModule({
   declarations: [
     AdquirirPlanComponent,
-    SolicitarServicioFunerarioComponent
+    SolicitarServicioFunerarioComponent,
+    CrearClienteComponent
   ],
   imports: [
     CommonModule,
