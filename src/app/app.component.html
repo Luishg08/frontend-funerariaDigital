@@ -4,17 +4,13 @@
 <app-encabezado>
 </app-encabezado>
 
-<div class="container">
-
-<app-menu-lateral>
-    
-</app-menu-lateral>
-    
+<div class="container">    
 <router-outlet/>
 
 <router-outlet />
 
 </div>
-<app-pie-de-pagina *ngIf="rutaActual !== '/seguridad/identificar-usuario' && rutaActual !== '/seguridad/registro-publico-usuarios'">
+<app-pie-de-pagina *ngIf="rutaActual !== '/seguridad/identificar-usuario' && rutaActual !== '/seguridad/registro-publico-usuarios'
+    && rutaActual!=='/seguridad/identificacion-twofa'">
 
 </app-pie-de-pagina>
