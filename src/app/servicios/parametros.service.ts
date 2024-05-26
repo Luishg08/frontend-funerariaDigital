@@ -9,6 +9,7 @@ import { SedeModel } from '../modelos/sede.model';
 import { SalaModel } from '../modelos/sala.model';
 import { ServicioFunerarioModel } from '../modelos/servicio.funerario.model';
 import { ClienteModel } from '../modelos/cliente.model';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -79,17 +80,32 @@ export class ParametrosService {
     });
   }
 
-  crearCliente(nombre:string,apellido:string,documento:string,celular:string,correo:string):Observable<ClienteModel>{
-    let idUsuario= this.ObtenerIdUsuarioLS()
-    return this.http.post<ClienteModel>(`${this.urlBase}cliente`,{
-      nombre: nombre,
-      apellido: apellido,
-      documento: documento,
-      celular: celular,
-      correo: correo,
-      idUsuario: idUsuario,
-      estadoCliente: false
+
+
+crearCliente(nombre:string,apellido:string,documento:string,celular:string,correo:string):Observable<ClienteModel>{
+  let idUsuario= this.ObtenerIdUsuarioLS()
+  let token = ""
+  let datosSesion= localStorage.getItem("datos-sesion")
+    if(datosSesion){
+      let usuario= JSON.parse(datosSesion);
+      token = usuario.token;
     }
-    )
-  }
+    console.log(token+" "+"este es el token");
+    
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    console.log(nombre, apellido, documento, celular, correo, idUsuario);
+    
+
+  return this.http.post<ClienteModel>(`${this.urlBase}cliente`,{
+    nombre: nombre,
+    apellido: apellido,
+    documento: documento,
+    celular: celular,
+    correo: correo,
+    id_usuario: idUsuario,
+    estado_cliente: false
+  }, { headers: headers }
+  )
+}
 }
