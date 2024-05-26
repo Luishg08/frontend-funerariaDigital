@@ -13,7 +13,8 @@ module.exports = {
         "moradoTitulo": "#732897",
         "grisfondo": "#EEEEEE", 
         "moradoclaroboton": "#BB9CC0",
-        "moradoclarodivinicio": "#BB9CC0"
+        "moradoclarodivinicio": "#BB9CC0",
+        "espaciofotodeperfil": '#D9D9D9'
       },
       fontFamily:{
         "junge": ['Junge', 'sans-serif'],

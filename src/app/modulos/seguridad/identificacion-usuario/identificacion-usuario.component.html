@@ -15,6 +15,12 @@
       <input formControlName="clave" id="password" type="password" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="********">
     </div>
     <div class="mb-4">
+      <div class="justify-center mt-5 mb-4 ml-6">
+      <re-captcha formControlName="recaptcha" siteKey="6LcWm-gpAAAAAOZ5Ejuuh7jH-uMtKNtCjxxR7Sqo"></re-captcha>
+      <div *ngIf="fGroup.controls['recaptcha'].invalid && (fGroup.controls['recaptcha'].dirty || fGroup.controls['recaptcha'].touched)" class="text-danger">
+        Debe completar el reCAPTCHA.
+      </div>
+    </div>
       <button (click)="IdentificarUsuario()" class="bg-moradoOscuro hover:bg-purple-900 text-white font-bold py-2 px-3 rounded w-full" type="button">
           Identificar
       </button>

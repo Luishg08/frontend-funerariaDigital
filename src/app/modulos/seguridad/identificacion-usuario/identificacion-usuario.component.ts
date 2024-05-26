@@ -5,6 +5,7 @@ import { UsuarioModel } from '../../../modelos/usuario.model';
 import { MD5 } from 'crypto-js';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-identificacion-usuario',
   templateUrl: './identificacion-usuario.component.html',
@@ -26,7 +27,8 @@ export class IdentificacionUsuarioComponent {
   ConstruirFormulario(){
     this.fGroup = this.fb.group({
       usuario: ['', [Validators.required, Validators.email]],
-      clave: ['', [Validators.required]]
+      clave: ['', [Validators.required]],
+      recaptcha: ['', [Validators.required]]
     });
   }
 
@@ -34,6 +36,10 @@ export class IdentificacionUsuarioComponent {
     if(this.fGroup.invalid){
       alert('Debe ingresar los datos requeridos');
     }else{
+      if(this.obtenerFormGroup['recaptcha'].value == null || this.obtenerFormGroup['recaptcha'].value == undefined){
+        alert('Debe validar el recaptcha');
+        return;
+      }
       alert('Usuario identificado');
       let usuario = this.obtenerFormGroup['usuario'].value
       let clave = this.obtenerFormGroup['clave'].value
