@@ -27,7 +27,8 @@ export class RecuperarClaveComponent {
 
   ConstruirFormulario(){
     this.fbGroup = this.fb.group({
-      usuario: ['', [Validators.required, Validators.email]]
+      usuario: ['', [Validators.required, Validators.email]],
+      recaptcha: ['', [Validators.required]]
     });
   }
 

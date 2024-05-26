@@ -11,6 +11,7 @@ import { CrearUsuarioComponent } from './usuario/crear-usuario/crear-usuario.com
 import { CambiarClaveComponent } from './cambiar-clave/cambiar-clave.component';
 import { RegistroPublicoUsuariosComponent } from './registro-publico-usuarios/registro-publico-usuarios.component';
 import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 
 @NgModule({
@@ -28,7 +29,9 @@ import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
     RouterOutlet, 
     RouterLink, 
     ReactiveFormsModule, 
-    FormsModule
+    FormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ]
 })
 export class SeguridadModule { }
