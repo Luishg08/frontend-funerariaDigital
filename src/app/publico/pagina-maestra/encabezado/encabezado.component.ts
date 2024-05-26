@@ -41,7 +41,7 @@ export class EncabezadoComponent {
         }else{
           this.sesionActiva=false;
         }
-      },error:(err:any)=>{
+      },error:(err)=>{
 
       }
     })

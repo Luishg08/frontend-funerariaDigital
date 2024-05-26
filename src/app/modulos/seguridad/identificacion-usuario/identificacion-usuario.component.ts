@@ -42,7 +42,7 @@ export class IdentificacionUsuarioComponent {
         next: (data:UsuarioModel) => {
           console.log(data);
           if(data._id == undefined || data._id == null){
-            alert('Credenciales incorrectas o falta la validación del correo electrónico')
+            alert('Credenciales incorrectas o requiere la validación del correo electrónico')
           }else{
 
           console.log(data);

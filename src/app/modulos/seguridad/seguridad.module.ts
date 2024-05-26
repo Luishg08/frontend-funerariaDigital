@@ -11,6 +11,7 @@ import { CrearUsuarioComponent } from './usuario/crear-usuario/crear-usuario.com
 import { CambiarClaveComponent } from './cambiar-clave/cambiar-clave.component';
 import { RegistroPublicoUsuariosComponent } from './registro-publico-usuarios/registro-publico-usuarios.component';
 import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
+import { ValidarHashUsuarioPublicoComponent } from './validar-hash-usuario-publico/validar-hash-usuario-publico.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
     RecuperarClaveComponent, 
     CrearUsuarioComponent,
     CambiarClaveComponent, 
-    RegistroPublicoUsuariosComponent
+    RegistroPublicoUsuariosComponent,
+   
   ],
   imports: [
     CommonModule,

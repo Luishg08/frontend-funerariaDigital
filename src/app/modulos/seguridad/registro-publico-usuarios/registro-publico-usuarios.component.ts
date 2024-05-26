@@ -44,10 +44,10 @@ export class RegistroPublicoUsuariosComponent {
     }
     this.servicioSeguridad.RegistrarUsuarioPublico(datos).subscribe({
       next: (respuesta:UsuarioModel)=>{
-        alert("Usuario registrado correctamente");
+        alert("Usuario registrado correctamente, se ha envidao un mensaje para validar su direccion de correo electrónico");
       },
-      error: (err:any)=>{
-        alert("Error al registrar usuario");
+      error: (err)=>{
+        alert("Error al registrar el usuario");
       }
     })
   }
