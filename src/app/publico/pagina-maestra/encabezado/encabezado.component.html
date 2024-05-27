@@ -26,7 +26,7 @@
                   <ul class="bg-nav py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                     <!-- Boton solicitar servicio -->
                     <li>
-                      <a onclick="" *ngIf="sesionActiva" routerLink="/parametros/solicitar-servicio-funerario" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Solicitar Servicio Funerario</a>
+                      <a *ngIf="sesionActiva"  (click)="VerificarSiTieneClienteYPlan()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Solicitar Servicio Funerario</a>
                     </li>
                     <!-- Boton Planes -->
                     <li>

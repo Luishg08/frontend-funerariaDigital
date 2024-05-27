@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ParametrosService } from '../../../servicios/parametros.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { EncabezadoComponent } from '../../../publico/pagina-maestra/encabezado/encabezado.component';
+import { ClienteModel } from '../../../modelos/cliente.model';
+import { NavigationStart, Router } from '@angular/router';
+import { ClientePlanModel } from '../../../modelos/cliente.plan.model';
+import { SeguridadService } from '../../../servicios/seguridad.service';
+import { UsuarioValidadoModel } from '../../../modelos/usuario.validado.model';
 
 @Component({
   selector: 'app-solicitar-servicio-funerario',
@@ -11,19 +17,28 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class SolicitarServicioFunerarioComponent {
   fGroup: FormGroup=new FormGroup({});
   today = new Date().toISOString().split('T')[0];
+  rutaActual: string = '';
+  sesionActiva: boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    private servicioParametros: ParametrosService
+    private servicioParametros: ParametrosService,
+    private router: Router,
+    private servicioSeguridad: SeguridadService
   ) { 
-    
+    this.router.events.subscribe((event:any) => {
+      if (event instanceof NavigationStart) {
+        this.rutaActual = event.url;
+      }
+    });
   }
 
   ngOnInit() 
   {
     this.cargarDatos();
     this.ConstruirFormulario();
-    
+    this.VerificarSiTieneClienteYPlan()
+    this.ValidarSesion();
   }
 
   ConstruirFormulario(){
@@ -246,4 +261,66 @@ get obtenerFormGroup(){
     } 
   }
 
+
+  VerificarSiTieneClienteYPlan(){
+    let idUsuario= this.servicioParametros.ObtenerIdUsuarioLS();
+    if(!idUsuario){
+      return;
+    }
+    this.servicioParametros.VerificarSiYaTieneCliente(idUsuario).subscribe({
+      next: (datos:ClienteModel) =>{
+        console.log("datos ",datos);
+        if(datos.documento){
+          localStorage.setItem("datos-cliente",JSON.stringify(datos));
+          console.log("ya tiene cliente desde nav");
+          
+        }else{
+          console.log("no tiene cliente desde nav");
+          this.router.navigate(['/parametros/crear-cliente']);
+         
+        }
+      },error:(err:any)=>{
+        console.log(err);
+      }
+    })
+
+    this.servicioParametros.ObtenerClientePlanActivo(idUsuario).subscribe({
+      next: (datos:ClientePlanModel|boolean) =>{
+        if(datos == false){
+          console.log("no tiene plan desde nav");
+          if(this.rutaActual !== "/parametros/crear-cliente"){
+          this.router.navigate(['/parametros/adquirir-plan']);
+          console.log(datos);
+          return
+          }
+        }
+        else{
+          console.log("ya tiene plan desde nav");
+          this.router.navigate(['/parametros/solicitar-servicio-funerario']);
+          console.log(datos);
+          
+        }
+      },error:(err:any)=>{
+        console.log(err);
+      }
+    })
+    
+    
+    
+  }
+
+  ValidarSesion(){
+    this.servicioSeguridad.ObtenerDatosSesion().subscribe({
+      next: (datos:UsuarioValidadoModel) =>{
+        if(datos.token!=""){
+          this.sesionActiva=true;
+        }else{
+          this.sesionActiva=false;
+          this.router.navigate(['/seguridad/identificar-usuario']);
+        }
+      },error:(err)=>{
+
+      }
+    })
+  }
 }

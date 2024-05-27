@@ -6,6 +6,15 @@
                     Nombre
                 </th>
                 <th scope="col" class="px-6 py-3 border border-gray-300">
+                    Fecha de Registro
+                </th>
+                <th scope="col" class="px-6 py-3 border border-gray-300">
+                    Documento
+                </th>
+                <th scope="col" class="px-6 py-3 border border-gray-300">
+                    Celular
+                </th>
+                <th scope="col" class="px-6 py-3 border border-gray-300">
                     Estado
                 </th>
                 <th scope="col" class="px-6 py-3 border border-gray-300">
@@ -19,10 +28,19 @@
         <tbody>
             <tr *ngFor="let beneficiario of beneficiarios" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white border border-gray-300">
-                  {{ beneficiario.nombre }}
+                  {{ (beneficiario.nombre) }} {{beneficiario.apellido}}
                 </td>
                 <td class="px-6 py-4 border border-gray-300">
-                  activo
+                  {{ beneficiario.fecha_registro | date: 'dd/MM/yyyy'}}
+                </td>
+                <td class="px-6 py-4 border border-gray-300">
+                  {{ beneficiario.documento }}
+                </td>
+                <td class="px-6 py-4 border border-gray-300">
+                  {{ beneficiario.celular }}
+                </td>
+                <td class="px-6 py-4 border border-gray-300">
+                  {{beneficiario.estadoDeBeneficiario!.nombre}}
                 </td>
                 <td class="px-6 py-4 border border-gray-300">
                   <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -34,7 +52,7 @@
                     Eliminar
                   </button>
                 </td>
-              </tr>
+            </tr>
         </tbody>
     </table>
 </div>
