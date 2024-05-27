@@ -1,1 +1,58 @@
-<p>mis-beneficiarios works!</p>
+<div class="relative overflow-x-auto my-8 mx-4">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-collapse border border-gray-200">
+        <thead class="text-xs text-white uppercase bg-purple-700 dark:bg-purple-800">
+            <tr>
+                <th scope="col" class="px-6 py-3 border border-gray-300">
+                    Nombre
+                </th>
+                <th scope="col" class="px-6 py-3 border border-gray-300">
+                    Fecha de Registro
+                </th>
+                <th scope="col" class="px-6 py-3 border border-gray-300">
+                    Documento
+                </th>
+                <th scope="col" class="px-6 py-3 border border-gray-300">
+                    Celular
+                </th>
+                <th scope="col" class="px-6 py-3 border border-gray-300">
+                    Estado
+                </th>
+                <th scope="col" class="px-6 py-3 border border-gray-300">
+                    Editar
+                </th>
+                <th scope="col" class="px-6 py-3 border border-gray-300">
+                    Eliminar
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let beneficiario of beneficiarios" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white border border-gray-300">
+                  {{ (beneficiario.nombre) }} {{beneficiario.apellido}}
+                </td>
+                <td class="px-6 py-4 border border-gray-300">
+                  {{ beneficiario.fecha_registro | date: 'dd/MM/yyyy'}}
+                </td>
+                <td class="px-6 py-4 border border-gray-300">
+                  {{ beneficiario.documento }}
+                </td>
+                <td class="px-6 py-4 border border-gray-300">
+                  {{ beneficiario.celular }}
+                </td>
+                <td class="px-6 py-4 border border-gray-300">
+                  {{beneficiario.estadoDeBeneficiario!.nombre}}
+                </td>
+                <td class="px-6 py-4 border border-gray-300">
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Editar
+                  </button>
+                </td>
+                <td class="px-6 py-4 border border-gray-300">
+                  <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    Eliminar
+                  </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -5,4 +5,5 @@ export class BeneficiarioModel {
     apellido?: string;
     documento?: string;
     celular?: string;
+    estadoDeBeneficiario?: any;
 }

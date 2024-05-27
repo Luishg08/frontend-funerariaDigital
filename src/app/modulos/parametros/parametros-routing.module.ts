@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SolicitarServicioFunerarioComponent } from './solicitar-servicio-funerario/solicitar-servicio-funerario.component';
 import { AdquirirPlanComponent } from './adquirir-plan/adquirir-plan.component';
 import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente.component';
+import { MisBeneficiariosComponent } from './cliente/mis-beneficiarios/mis-beneficiarios.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'crear-cliente',
     component: CrearClienteComponent
+  },
+  {
+    path: 'mis-beneficiarios',
+    component: MisBeneficiariosComponent
   }
 ];
 

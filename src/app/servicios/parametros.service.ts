@@ -10,6 +10,8 @@ import { SalaModel } from '../modelos/sala.model';
 import { ServicioFunerarioModel } from '../modelos/servicio.funerario.model';
 import { ClienteModel } from '../modelos/cliente.model';
 import { HttpHeaders } from '@angular/common/http';
+import { PlanModel } from '../modelos/plan.model';
+import { ClientePlanModel } from '../modelos/cliente.plan.model';
 
 @Injectable({
   providedIn: 'root'
@@ -107,5 +109,15 @@ crearCliente(nombre:string,apellido:string,documento:string,celular:string,corre
     estado_cliente: false
   }, { headers: headers }
   )
+}
+
+obtenerPlanes():Observable<PlanModel[]>{
+  return this.http.get<PlanModel[]>(`${this.urlBase}plan`);
+}
+
+ObtenerClientePlanActivo(idUsuario:string):Observable<ClientePlanModel|boolean>{
+  return this.http.post<ClientePlanModel|boolean>(`${this.urlBase}verificar-estado-cliente`,{
+    idUsuario: idUsuario
+  });
 }
 }

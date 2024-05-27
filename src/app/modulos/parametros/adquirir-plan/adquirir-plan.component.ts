@@ -4,6 +4,7 @@ import { UsuarioValidadoModel } from '../../../modelos/usuario.validado.model';
 import { Router } from '@angular/router';
 import { ParametrosService } from '../../../servicios/parametros.service';
 import { ClienteModel } from '../../../modelos/cliente.model';
+import { PlanModel } from '../../../modelos/plan.model';
 
 
 @Component({
@@ -15,6 +16,8 @@ import { ClienteModel } from '../../../modelos/cliente.model';
 export class AdquirirPlanComponent {
   sesionActiva: boolean = false;
   yatieneCliente: boolean = false;
+  planesmensual: boolean = true;
+  planesanual: boolean = false;
 
   constructor(
     private servicioSeguridad: SeguridadService,
@@ -24,7 +27,9 @@ export class AdquirirPlanComponent {
 
   ngOnInit() {
     this.ValidarSesion();
-    this.VerificarSiYaTieneCliente()
+    this.VerificarSiYaTieneCliente();
+    this.ObtenerPlanes()
+    this.mostrarPlanesMensual();
     
   }
 
@@ -74,4 +79,50 @@ export class AdquirirPlanComponent {
       }
     })
   }
+
+  planes: PlanModel[] = [];
+
+
+ObtenerPlanes(){
+  this.servicioParametros.obtenerPlanes().subscribe({
+    next:(data:PlanModel[])=>{
+      this.planes = data;
+    },
+    error: (err) => {
+      alert("No se pudo listar los planes");
+    }
+  });
+}
+
+ContinuarConPlanSeleccionado(){
+  let selectRadioSeleccionado = document.querySelector('input[name="plan"]:checked') as HTMLInputElement;
+  if(selectRadioSeleccionado){
+    let idPlan = selectRadioSeleccionado!.value
+    console.log("Este es el id del plan seleccionado",idPlan);
+    alert("Ha seleccionado el plan con id "+idPlan);
+  }
+  else{
+    alert("Debe seleccionar un plan");
+    return;
+  }
+
+}
+
+mostrarPlanesMensual(){
+  this.planesmensual=true;
+  this.planesanual=false;
+  let selectBotonMensual = document.getElementById("botonMensual") as HTMLButtonElement;
+  let selectBotonAnual = document.getElementById("botonAnual") as HTMLButtonElement;
+  selectBotonMensual!.style.backgroundColor = "#713abe";
+  selectBotonAnual!.style.backgroundColor = "#b9b4c7";
+}
+
+mostrarPlanesAnual(){
+  this.planesmensual=false;
+  this.planesanual=true;
+  let selectBotonAnual = document.getElementById("botonAnual") as HTMLButtonElement;
+  let selectBotonMensual = document.getElementById("botonMensual") as HTMLButtonElement;
+  selectBotonAnual!.style.backgroundColor = "#713abe";
+  selectBotonMensual!.style.backgroundColor = "#b9b4c7";
+}
 }
