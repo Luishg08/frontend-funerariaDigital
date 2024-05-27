@@ -189,6 +189,12 @@ export class SeguridadService {
       });
     }
     
+    VerificarSiYaExisteUsuario(correo:string): Observable<UsuarioModel|null>{
+      return this.http.post<UsuarioModel | null>(`${this.urlBase}obtener-usuario-con-correo`,{
+        correo: correo
+      });
+    }
+
     RegistrarUsuarioPublico(datos:any): Observable<UsuarioModel>{
       return this.http.post<UsuarioModel>(`${this.urlBase}usuario-publico`, datos);
     }

@@ -42,14 +42,27 @@ export class RegistroPublicoUsuariosComponent {
       segundoApellido: campos["segundoApellido"].value,
       celular: campos["celular"].value,
     }
-    this.servicioSeguridad.RegistrarUsuarioPublico(datos).subscribe({
-      next: (respuesta:UsuarioModel)=>{
-        alert("Usuario registrado correctamente, se ha envidao un mensaje para validar su direccion de correo electrónico");
+
+    this.servicioSeguridad.VerificarSiYaExisteUsuario(datos.correo).subscribe({
+      next: (respuesta:UsuarioModel|null)=>{
+        if(respuesta){
+          alert("Ya existe un usuario con el correo electrónico ingresado, inicie sesión o valide su correo electrónico");
+        }
+        else{
+          this.servicioSeguridad.RegistrarUsuarioPublico(datos).subscribe({
+            next: (respuesta:UsuarioModel)=>{
+              alert("Usuario registrado correctamente, se ha envidao un mensaje para validar su direccion de correo electrónico");
+            },
+            error: (err)=>{
+              alert("Error al registrar el usuario");
+            }
+          })
+        }
       },
       error: (err)=>{
-        alert("Error al registrar el usuario");
       }
     })
+
   }
   
   get obtenerFormGroup(){
