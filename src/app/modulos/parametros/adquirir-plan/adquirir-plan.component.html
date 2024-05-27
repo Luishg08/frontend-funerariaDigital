@@ -7,9 +7,19 @@
         <button class="px-4 py-2 bg-purple-300 text-white rounded-l-lg focus:outline-none">Mensual</button>
         <button class="px-4 py-2 bg-purple-300 text-white rounded-r-lg focus:outline-none">Anual</button>
     </div>
-    
-    <div class="flex justify-center space-x-4">
-        <!-- Plan Estándar -->
+    <div id="containerPlanes" class="flex justify-center space-x-4">
+        <div *ngFor="let plan of planes" class="flex flex-col p-6 rounded-lg shadow-lg bg-purple-300 text-white w-64 border-2 border-transparent hover:border-purple-500">
+            <h2 class="titulo">{{ plan.nombre }}</h2>
+            <p class="mensualidad">{{ plan.mensualidad }},00/mes</p>
+            <ul class="detalles">
+              <li>Hasta {{ plan.cantidad_beneficiarios }} beneficiarios</li>
+              <li>{{ plan.detalles }}</li>
+            </ul>
+            <div class="flex justify-center mt-auto">
+              <input type="radio" name="plan" class="w-6 h-6 text-purple-500"/>
+            </div>
+          </div>
+        <!-- Plan Estándar 
         <div class="flex flex-col p-6 rounded-lg shadow-lg bg-purple-100 text-gray-800 w-64 border-2 border-transparent hover:border-purple-500">
             <h2 class="text-2xl font-bold mb-2">Estándar</h2>
             <p class="text-2xl font-bold mb-4">$ 60.000,00/mes</p>
@@ -25,9 +35,10 @@
             <div class="flex justify-center mt-auto">
                 <input type="radio" name="plan" class="w-6 h-6 text-purple-500"/>
             </div>
-        </div>
+        </div>-->
+        
 
-        <!-- Plan Gold -->
+        <!-- Plan Gold 
         <div class="flex flex-col p-6 rounded-lg shadow-lg bg-purple-300 text-white w-64 border-2 border-transparent hover:border-purple-500">
             <h2 class="text-2xl font-bold mb-2">Gold</h2>
             <p class="text-2xl font-bold mb-4">$ 100.000,00/mes</p>
@@ -45,9 +56,9 @@
             <div class="flex justify-center mt-auto">
                 <input type="radio" name="plan" class="w-6 h-6 text-purple-500" checked/>
             </div>
-        </div>
+        </div>-->
 
-        <!-- Plan Premium -->
+        <!-- Plan Premium 
         <div class="flex flex-col p-6 rounded-lg shadow-lg bg-purple-500 text-white w-64 border-2 border-transparent hover:border-purple-700">
             <h2 class="text-2xl font-bold mb-2">Premium</h2>
             <p class="text-2xl font-bold mb-4">$ 120.000,00/mes</p>
@@ -65,7 +76,7 @@
             <div class="flex justify-center mt-auto">
                 <input type="radio" name="plan" class="w-6 h-6 text-purple-700"/>
             </div>
-        </div>
+        </div>-->
     </div>
     
     <div class="mt-6 mb-6">

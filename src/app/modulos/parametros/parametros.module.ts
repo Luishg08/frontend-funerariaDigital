@@ -7,12 +7,14 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdquirirPlanComponent } from './adquirir-plan/adquirir-plan.component';
 import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente.component';
+import { MisBeneficiariosComponent } from './cliente/mis-beneficiarios/mis-beneficiarios.component';
 
 @NgModule({
   declarations: [
     AdquirirPlanComponent,
     SolicitarServicioFunerarioComponent,
-    CrearClienteComponent
+    CrearClienteComponent, 
+    MisBeneficiariosComponent
   ],
   imports: [
     CommonModule,

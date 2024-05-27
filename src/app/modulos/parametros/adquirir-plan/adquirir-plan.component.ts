@@ -4,6 +4,7 @@ import { UsuarioValidadoModel } from '../../../modelos/usuario.validado.model';
 import { Router } from '@angular/router';
 import { ParametrosService } from '../../../servicios/parametros.service';
 import { ClienteModel } from '../../../modelos/cliente.model';
+import { PlanModel } from '../../../modelos/plan.model';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class AdquirirPlanComponent {
 
   ngOnInit() {
     this.ValidarSesion();
-    this.VerificarSiYaTieneCliente()
+    this.VerificarSiYaTieneCliente();
+    this.ObtenerPlanes()
     
   }
 
@@ -74,4 +76,17 @@ export class AdquirirPlanComponent {
       }
     })
   }
+
+  planes: PlanModel[] = [];
+
+ObtenerPlanes(){
+  this.servicioParametros.obtenerPlanes().subscribe({
+    next:(data:PlanModel[])=>{
+      this.planes = data;
+    },
+    error: (err) => {
+      alert("No se pudo listar los planes");
+    }
+  });
+}
 }
