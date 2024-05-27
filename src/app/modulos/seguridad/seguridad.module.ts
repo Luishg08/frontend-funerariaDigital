@@ -23,6 +23,7 @@ import { ValidarHashUsuarioPublicoComponent } from './validar-hash-usuario-publi
     CrearUsuarioComponent,
     CambiarClaveComponent, 
     RegistroPublicoUsuariosComponent,
+    ValidarHashUsuarioPublicoComponent
    
   ],
   imports: [
