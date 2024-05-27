@@ -12,7 +12,7 @@
             </div>
             <div class="mb-4">
                 <label for="departamento" class="block text-gray-700">Departamento donde está el cuerpo</label>
-                <select formControlName="departamentoCuerpo" (change)= "cargarCiudadesDepartamento()" id="departamentoCuerpo" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" >
+                <select formControlName="departamentoCuerpo" (change)="cargarCiudadesDepartamento()" id="departamentoCuerpo" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" >
                     <option value="" disabled selected hidden>Escoja un departamento</option>
                 </select>
             </div>

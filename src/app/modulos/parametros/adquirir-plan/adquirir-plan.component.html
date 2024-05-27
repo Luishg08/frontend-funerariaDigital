@@ -9,7 +9,7 @@
     </div>
     <div id="containerPlanes" class="flex justify-center space-x-4">
         <div *ngFor="let plan of planes" class="flex flex-col p-6 rounded-lg shadow-lg bg-purple-300 text-white w-64 border-2 border-transparent hover:border-purple-500">
-            <h2 class="titulo">{{ plan.nombre }}</h2>
+            <h3 class="titulo">{{ plan.nombre }}</h3>
             <p class="mensualidad">{{ plan.mensualidad }},00/mes</p>
             <ul class="detalles">
               <li>Hasta {{ plan.cantidad_beneficiarios }} beneficiarios</li>
