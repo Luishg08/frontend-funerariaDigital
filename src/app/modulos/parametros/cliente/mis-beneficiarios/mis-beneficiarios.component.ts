@@ -18,7 +18,7 @@ export class MisBeneficiariosComponent {
   ){}
 
   ngOnInit() {
-
+    this.datosBeneficiarios();
   }
 
 

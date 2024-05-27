@@ -1,24 +1,38 @@
 <body class="bg-white text-center">
 
-    <h1 class="text-4xl font-bold mt-10 text-purple-800">Elige tu plan</h1>
+    <h1 class="text-4xl font-bold mt-10 text-purple">Elige tu plan</h1>
     <p class="text-lg mt-2 mb-6">Asegura la tranquilidad de tus seres queridos con nuestros planes de funeraria personalizados</p>
     
     <div class="flex justify-center mb-8">
-        <button class="px-4 py-2 bg-purple-300 text-white rounded-l-lg focus:outline-none">Mensual</button>
-        <button class="px-4 py-2 bg-purple-300 text-white rounded-r-lg focus:outline-none">Anual</button>
+        <button id="botonMensual" class="px-4 py-2 bg-purple-300 text-white rounded-l-lg focus:outline-none" (click)="mostrarPlanesMensual()">Mensual</button>
+        <button id="botonAnual" class="px-4 py-2 bg-purple-300 text-white rounded-r-lg focus:outline-none" (click)="mostrarPlanesAnual()">Anual</button>
     </div>
-    <div id="containerPlanes" class="flex justify-center space-x-4">
-        <div *ngFor="let plan of planes" class="flex flex-col p-6 rounded-lg shadow-lg bg-purple-300 text-white w-64 border-2 border-transparent hover:border-purple-500">
-            <h3 class="titulo">{{ plan.nombre }}</h3>
-            <p class="mensualidad">{{ plan.mensualidad }},00/mes</p>
-            <ul class="detalles">
-              <li>Hasta {{ plan.cantidad_beneficiarios }} beneficiarios</li>
-              <li>{{ plan.detalles }}</li>
+    <div *ngIf="planesmensual" id="containerPlanes" class="flex justify-center space-x-4">
+        <div *ngFor="let plan of planes" class="flex flex-col p-6 rounded-lg shadow-lg bg-gradient-to-b from-moradoOscuro via-moradoTitulo to-moradoclaroboton text-white w-1/4 border-2 border-transparent hover:border-purple-500 bg-opacity-60 hover:bg-opacity-80 transition-all duration-200">
+            <h3 class="titulo text-2xl font-semibold mb-2">{{ plan.nombre }}</h3>
+            <p class="mensualidad text-xl mb-4">{{ plan.mensualidad }},00/mes</p>
+            <ul class="detalles mb-6">
+                <li class="mb-2">Hasta {{ plan.cantidad_beneficiarios }} beneficiarios</li>
+                <li>{{ plan.detalles }}</li>
             </ul>
             <div class="flex justify-center mt-auto">
-              <input type="radio" name="plan" class="w-6 h-6 text-purple-500"/>
+                <input type="radio" [value]="plan.id" name="plan" id="radioPlan" class="w-6 h-6 text-purple-500"/>
             </div>
-          </div>
+    </div>
+</div>
+    <div *ngIf="planesanual" id="containerPlanes" class="flex justify-center space-x-4">
+        <div *ngFor="let plan of planes" class="flex flex-col p-6 rounded-lg shadow-lg bg-gradient-to-b from-moradoOscuro via-moradoTitulo to-moradoclaroboton text-white w-1/4 border-2 border-transparent hover:border-purple-500 bg-opacity-60 hover:bg-opacity-80 transition-all duration-200">
+            <h3 class="titulo text-2xl font-semibold mb-2">{{ plan.nombre }}</h3>
+            <p class="mensualidad text-xl mb-4">{{ (plan.mensualidad! * 12) * 0.75 }},00/año 25% OFF</p>
+            <ul class="detalles mb-6">
+                <li class="mb-2">Hasta {{ plan.cantidad_beneficiarios }} beneficiarios</li>
+                <li>{{ plan.detalles }}</li>
+            </ul>
+            <div class="flex justify-center mt-auto">
+                <input type="radio" [value]="plan.id" name="plan" id="radioPlan" class="w-6 h-6 text-purple-500"/>
+            </div>
+    </div>
+</div>
         <!-- Plan Estándar 
         <div class="flex flex-col p-6 rounded-lg shadow-lg bg-purple-100 text-gray-800 w-64 border-2 border-transparent hover:border-purple-500">
             <h2 class="text-2xl font-bold mb-2">Estándar</h2>
@@ -77,10 +91,9 @@
                 <input type="radio" name="plan" class="w-6 h-6 text-purple-700"/>
             </div>
         </div>-->
-    </div>
     
     <div class="mt-6 mb-6">
-        <button (click)="RedigirirARegistroOIngreso()" class="px-6 py-3 bg-purple-700 hover:bg-purple-900 text-white font-bold rounded focus:outline-none">Continuar</button>
+        <button (click)="RedigirirARegistroOIngreso()" (click)="ContinuarConPlanSeleccionado()" class="px-6 py-3 bg-purple-700 hover:bg-purple-900 text-white font-bold rounded focus:outline-none">Continuar</button>
     </div>
 
 </body>

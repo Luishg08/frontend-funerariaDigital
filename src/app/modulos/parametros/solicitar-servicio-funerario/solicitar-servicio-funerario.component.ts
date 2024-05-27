@@ -93,7 +93,7 @@ export class SolicitarServicioFunerarioComponent {
     })
   }
 
-  cargarCiudadesDepartamento(){
+  cargarCiudadesDepartamentoCuerpo(){
    let selectCiudad= document.getElementById('ciudadCuerpo');
    selectCiudad!.innerHTML = '';
    let selectSede= document.getElementById('sede');
@@ -123,6 +123,11 @@ export class SolicitarServicioFunerarioComponent {
     })
   }
 
+  
+}
+
+
+CargarCiudadesDepartamentoServicio(){
   let selectCiudadServicio= document.getElementById('ciudadServicio');
  
     if((document.getElementById('departamentoServicio') as HTMLInputElement).value !== 'no'){
@@ -144,8 +149,8 @@ export class SolicitarServicioFunerarioComponent {
       }
     })
   }
-
 }
+
 cargarSedesDeUnaCiudad(){
   let selectSala= document.getElementById('sala');
   selectSala!.innerHTML = '';

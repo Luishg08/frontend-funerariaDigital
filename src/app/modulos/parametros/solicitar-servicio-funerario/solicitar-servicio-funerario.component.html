@@ -1,72 +1,77 @@
-
-<body class="bg-gray-100 flex items-center justify-center min-h-screen w-100">
-    <div class="bg-white p-8 rounded shadow-lg w-full max-w-md">
-        <h2 class="text-2xl font-bold mb-4 text-center">Solicita tu servicio funerario</h2>
-        <p class="text-center mb-6">Llena el siguiente formulario</p>
-        <form [formGroup]="fGroup">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen w-full">
+    <div class="bg-white p-8 rounded shadow-lg w-3/4">
+        <h2 class="text-4xl font-bold mb-4 text-center text-moradoTitulo">Solicita tu servicio funerario</h2>
+        <div class="text-center">
+        <p class="text-black mt-4">En este momento difícil, queremos expresar nuestro apoyo y solidaridad contigo y tu familia. Sabemos que la pérdida de un ser querido es una experiencia dolorosa y desgarradora.</p>
+        <p class="text-black mt-4">Nos gustaría recordarte que estamos aquí para ayudarte en todo lo que necesites durante este proceso. Nuestro equipo de profesionales está comprometido en brindarte el mejor servicio funerario posible, con respeto, compasión y atención a cada detalle.</p>
+        <p class="text-black mt-4">Entendemos que cada persona y cada familia tiene necesidades únicas, por lo que nos esforzamos en adaptarnos a tus requerimientos y ofrecerte opciones personalizadas. Estamos disponibles para responder a tus preguntas, asesorarte y acompañarte en cada paso del camino.</p>
+        <p class="text-black mt-4">Además, queremos recordarte que no estás solo/a en este proceso. Contamos con una red de apoyo y recursos que pueden brindarte consuelo y orientación en momentos difíciles. No dudes en comunicarte con nosotros si necesitas hablar con alguien o si tienes alguna inquietud.</p>
+        <p class="text-black mt-4">Nuevamente, te enviamos nuestras más sinceras condolencias y te aseguramos que haremos todo lo posible para que este proceso sea lo más tranquilo y respetuoso posible. Estamos aquí para ti.</p>
+        </div>
+        <br>
+        <p class="text-center mb-6 text-black text-xl">Llena el siguiente formulario</p>
+        <form [formGroup]="fGroup" class="grid grid-cols-2 gap-6">
             <div class="mb-4">
-                <label for="beneficiario" class="block text-gray-700">Seleccionar beneficiario</label>
-                <select formControlName="beneficiario"   id="beneficiario" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <label for="beneficiario" class="block text-black">Seleccionar beneficiario</label>
+                <select formControlName="beneficiario" id="beneficiario" class="mt-1 block w-full border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500">
                     <option value="" disabled selected hidden>Seleccione un beneficiario</option>
                 </select>
             </div>
             <div class="mb-4">
-                <label for="departamento" class="block text-gray-700">Departamento donde está el cuerpo</label>
-                <select formControlName="departamentoCuerpo" (change)="cargarCiudadesDepartamento()" id="departamentoCuerpo" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" >
+                <label for="departamento" class="block text-black">Departamento donde está el cuerpo</label>
+                <select formControlName="departamentoCuerpo" (change)="cargarCiudadesDepartamentoCuerpo()" id="departamentoCuerpo" class="mt-1 block w-full border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500">
                     <option value="" disabled selected hidden>Escoja un departamento</option>
                 </select>
             </div>
             <div class="mb-4">
-                <label for="ciudad" class="block text-gray-700">Ciudad donde está el cuerpo</label>
-                <select formControlName="ciudadCuerpo" id="ciudadCuerpo" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" >
+                <label for="ciudad" class="block text-black">Ciudad donde está el cuerpo</label>
+                <select formControlName="ciudadCuerpo" id="ciudadCuerpo" class="mt-1 block w-full border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500">
                     <option value="" disabled selected hidden>Escoja una ciudad</option>
                 </select>
             </div>
             <div class="mb-4">
-                <label for="sepultura" class="block text-gray-700">Tipo de sepultura</label>
-                <select formControlName="sepultura" id="sepultura" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" >
+                <label for="sepultura" class="block text-black">Tipo de sepultura</label>
+                <select formControlName="sepultura" id="sepultura" class="mt-1 block w-full border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500">
                     <option value="" disabled selected hidden>Escoja un tipo de sepultura</option>
                     <option value="Cremación">Cremación</option>
                     <option value="Ataud">Ataúd</option>
-
                 </select>
             </div>
             <div class="mb-4">
-                <label for="fecha_ingreso" class="block text-gray-700">Fecha del servicio</label>
-                <input formControlName = "fecha_ingreso" type="date" id="fecha_ingreso" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" [attr.min] = "today" >
+                <label for="fecha_ingreso" class="block text-black">Fecha del servicio</label>
+                <input formControlName="fecha_ingreso" type="date" id="fecha_ingreso" class="mt-1 block w-full border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500" [attr.min]="today">
             </div>
             <div class="mb-4">
-                <label for="hora_ingreso" class="block text-gray-700">Hora de ingreso</label>
-                <input formControlName="hora_ingreso" type="time" id="hora_ingreso" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" >
+                <label for="hora_ingreso" class="block text-black">Hora de ingreso</label>
+                <input formControlName="hora_ingreso" type="time" id="hora_ingreso" class="mt-1 block w-full border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500">
             </div>
             <div class="mb-4">
-                <label for="departamento" class="block text-gray-700">Departamento donde desea que se realice el servicio</label>
-                <select formControlName="departamentoServicio"   (change)= "cargarCiudadesDepartamento()" id="departamentoServicio" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required >
+                <label for="departamento" class="block text-black">Departamento donde desea que se realice el servicio</label>
+                <select formControlName="departamentoServicio" (change)="CargarCiudadesDepartamentoServicio()" id="departamentoServicio" class="mt-1 block w-full border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500" required>
                     <option class="text-gray-400" value="" disabled selected hidden>Escoja un departamento</option>
                 </select>
             </div>
             <div class="mb-4">
-                <label for="ciudadServicio" class="block text-gray-700">Ciudad donde desea que se realice el servicio</label>
-                <select formControlName="ciudadServicio"  (change)= "cargarSedesDeUnaCiudad()" id="ciudadServicio" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                <label for="ciudadServicio" class="block text-black">Ciudad donde desea que se realice el servicio</label>
+                <select formControlName="ciudadServicio" (change)="cargarSedesDeUnaCiudad()" id="ciudadServicio" class="mt-1 block w-full border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500" required>
                     <option class="text-gray-400" value="" disabled selected hidden>Escoja una ciudad</option>
                 </select>
             </div>
             <div class="mb-4">
-                <label for="sede" class="block text-gray-700">Sede donde desea que se realice el servicio</label>
-                <select formControlName="sede" (change)= "cargarSalasDeUnaSede()" id="sede" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                <label for="sede" class="block text-black">Sede donde desea que se realice el servicio</label>
+                <select formControlName="sede" (change)="cargarSalasDeUnaSede()" id="sede" class="mt-1 block w-full border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500" required>
                     <option class="text-gray-400" value="" disabled selected hidden>Escoja una sede</option>
                 </select>
             </div>
-            <div class="mb-6">
-                <label for="sala" class="block text-gray-700">Salas disponibles</label>
-                <select formControlName="sala" id="sala" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
-                    <option class="text-gray-400" value="" disabled selected hidden >Escoja una sala</option>
+            <div class="mb-4">
+                <label for="sala" class="block text-black">Salas disponibles</label>
+                <select formControlName="sala" id="sala" class="mt-1 block w-full border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500" required>
+                    <option class="text-gray-400" value="" disabled selected hidden>Escoja una sala</option>
                 </select>
             </div>
-            <div class="text-center">
-                <button (click)="SolicitarServicioFunerario()" type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Enviar solicitud</button>
+            <div class="col-span-2 text-center">
+                <button (click)="SolicitarServicioFunerario()" type="submit" class="w-1/3 bg-moradoOscuro text-white py-2 px-4 rounded-md shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Enviar solicitud</button>
             </div>
         </form>
     </div>
 </body>
-
