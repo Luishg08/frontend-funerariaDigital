@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ParametrosService } from '../../../servicios/parametros.service';
 import { ClienteModel } from '../../../modelos/cliente.model';
 import { PlanModel } from '../../../modelos/plan.model';
+import { ClientePlanModel } from '../../../modelos/cliente.plan.model';
 
 
 @Component({
@@ -97,7 +98,24 @@ ObtenerPlanes(){
 ContinuarConPlanSeleccionado(){
   let selectRadioSeleccionado = document.querySelector('input[name="plan"]:checked') as HTMLInputElement;
   if(selectRadioSeleccionado){
+    let esanual = false
     let idPlan = selectRadioSeleccionado!.value
+    let planSeleccionado = this.planes.find(plan => plan.id == idPlan); 
+     let tarifa: any = planSeleccionado!.mensualidad
+     if(this.planesanual){
+      tarifa = (tarifa*12)*0.75
+      esanual = true
+     }
+    this.servicioParametros.AdquirirPlan(idPlan, JSON.parse(localStorage.getItem("datos-cliente")!),tarifa, esanual).subscribe({
+      next:(data:ClientePlanModel)=>{
+        console.log(data);
+        alert("Plan adquirido con exito");
+        this.router.navigate(['/inicio']);
+      },
+      error: (err) => {
+        alert("No se pudo adquirir el plan");
+      }
+    });
     console.log("Este es el id del plan seleccionado",idPlan);
     alert("Ha seleccionado el plan con id "+idPlan);
   }

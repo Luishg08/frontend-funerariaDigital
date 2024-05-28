@@ -126,4 +126,23 @@ ObtenerClienteConCorreo(correo:string):Observable<ClienteModel|null>{
     correo: correo
   });
 }
+
+AdquirirPlan(idPlan:string,dato:ClienteModel, precio:any, esanual:boolean):Observable<ClientePlanModel>{
+  const fechaContrato = new Date();
+  if(esanual){
+  fechaContrato.setFullYear(fechaContrato.getFullYear() + 1);
+  }
+  else{
+    fechaContrato.setMonth(fechaContrato.getMonth() + 1);
+  }
+
+  return this.http.post<ClientePlanModel>(`${this.urlBase}client-plan`,{
+    tarifa: precio,
+    fechaInicio: new Date(),
+    fechaContrato: fechaContrato,
+    clienteId: dato.id_cliente,
+    estadoClientePlan: true,
+    planId: Number(idPlan)
+  });
+  }
 }
