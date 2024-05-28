@@ -9,13 +9,15 @@ import { AdquirirPlanComponent } from './adquirir-plan/adquirir-plan.component';
 import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente.component';
 import { MisBeneficiariosComponent } from './cliente/mis-beneficiarios/mis-beneficiarios.component';
 import { EncabezadoComponent } from '../../publico/pagina-maestra/encabezado/encabezado.component';
+import { MetodosPagoComponent } from './cliente/metodos-pago/metodos-pago.component';
 
 @NgModule({
   declarations: [
     AdquirirPlanComponent,
     SolicitarServicioFunerarioComponent,
     CrearClienteComponent, 
-    MisBeneficiariosComponent
+    MisBeneficiariosComponent,
+    MetodosPagoComponent
   ],
   imports: [
     CommonModule,

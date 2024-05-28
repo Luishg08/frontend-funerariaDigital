@@ -12,6 +12,7 @@ import { ClienteModel } from '../modelos/cliente.model';
 import { HttpHeaders } from '@angular/common/http';
 import { PlanModel } from '../modelos/plan.model';
 import { ClientePlanModel } from '../modelos/cliente.plan.model';
+import { MetodosPagoCliente } from '../modelos/metodos.pago.cliente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -127,6 +128,7 @@ ObtenerClienteConCorreo(correo:string):Observable<ClienteModel|null>{
   });
 }
 
+
 AdquirirPlan(idPlan:string,dato:ClienteModel, precio:any, esanual:boolean):Observable<ClientePlanModel>{
   const fechaContrato = new Date();
   if(esanual){
@@ -145,4 +147,11 @@ AdquirirPlan(idPlan:string,dato:ClienteModel, precio:any, esanual:boolean):Obser
     planId: Number(idPlan)
   });
   }
+
+obtenermetodospagocliente(idUsuario:string):Observable<MetodosPagoCliente[]>{
+  return this.http.post<MetodosPagoCliente[]>(`${this.urlBase}metodos-de-pago-de-un-cliente`,{
+    idUsuario: idUsuario
+  });
+}
+
 }
