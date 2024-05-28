@@ -4,6 +4,7 @@ import { SolicitarServicioFunerarioComponent } from './solicitar-servicio-funera
 import { AdquirirPlanComponent } from './adquirir-plan/adquirir-plan.component';
 import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente.component';
 import { MisBeneficiariosComponent } from './cliente/mis-beneficiarios/mis-beneficiarios.component';
+import { MetodosPagoComponent } from './cliente/metodos-pago/metodos-pago.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'mis-beneficiarios',
     component: MisBeneficiariosComponent
+  },
+  {
+    path:'mis-metodos-de-pago',
+    component: MetodosPagoComponent
   }
 ];
 
