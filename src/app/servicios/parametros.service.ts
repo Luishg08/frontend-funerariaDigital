@@ -12,6 +12,7 @@ import { ClienteModel } from '../modelos/cliente.model';
 import { HttpHeaders } from '@angular/common/http';
 import { PlanModel } from '../modelos/plan.model';
 import { ClientePlanModel } from '../modelos/cliente.plan.model';
+import { MetodosPagoCliente } from '../modelos/metodos.pago.cliente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -124,6 +125,12 @@ ObtenerClientePlanActivo(idUsuario:string):Observable<ClientePlanModel|boolean>{
 ObtenerClienteConCorreo(correo:string):Observable<ClienteModel|null>{
   return this.http.post<ClienteModel|null>(`${this.urlBase}cliente-con-correo`,{
     correo: correo
+  });
+}
+
+obtenermetodospagocliente(idUsuario:string):Observable<MetodosPagoCliente[]>{
+  return this.http.post<MetodosPagoCliente[]>(`${this.urlBase}metodos-de-pago-de-un-cliente`,{
+    idUsuario: idUsuario
   });
 }
 }
