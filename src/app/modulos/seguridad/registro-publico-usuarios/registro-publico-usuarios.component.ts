@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SeguridadService } from '../../../servicios/seguridad.service';
 import { UsuarioModel } from '../../../modelos/usuario.model';
+import { Router } from '@angular/router';
+import { ParametrosService } from '../../../servicios/parametros.service';
 
 @Component({
   selector: 'app-registro-publico-usuarios',
@@ -14,7 +16,9 @@ export class RegistroPublicoUsuariosComponent {
 
   constructor(
     private fb: FormBuilder,
-    private servicioSeguridad: SeguridadService
+    private servicioSeguridad: SeguridadService,
+    private router: Router,
+    private servicioParametros: ParametrosService
   ){}
 
   ngOnInit() {
@@ -47,11 +51,26 @@ export class RegistroPublicoUsuariosComponent {
       next: (respuesta:UsuarioModel|null)=>{
         if(respuesta){
           alert("Ya existe un usuario con el correo electrónico ingresado, inicie sesión o valide su correo electrónico");
+          this.router.navigate(['/seguridad/identificar-usuario']);
         }
         else{
+          this.servicioParametros.ObtenerClienteConCorreo(datos.correo).subscribe({
+            next: (respuesta:any)=>{
+              if(respuesta){
+                alert("Ya existe un cliente con el correo electrónico ingresado, inicie sesión o valide su correo electrónico");
+                this.router.navigate(['/seguridad/identificar-usuario']);
+              }
+            },
+            error: (err)=>{
+
+            }
+          })
+
+
           this.servicioSeguridad.RegistrarUsuarioPublico(datos).subscribe({
             next: (respuesta:UsuarioModel)=>{
-              alert("Usuario registrado correctamente, se ha envidao un mensaje para validar su direccion de correo electrónico");
+              alert("Usuario registrado correctamente, se ha enviado un mensaje para validar su direccion de correo electrónico, por favor valide su correo electrónico para poder iniciar sesión");
+              this.router.navigate(['/seguridad/identificar-usuario']);
             },
             error: (err)=>{
               alert("Error al registrar el usuario");

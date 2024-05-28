@@ -120,4 +120,10 @@ ObtenerClientePlanActivo(idUsuario:string):Observable<ClientePlanModel|boolean>{
     idUsuario: idUsuario
   });
 }
+
+ObtenerClienteConCorreo(correo:string):Observable<ClienteModel|null>{
+  return this.http.post<ClienteModel|null>(`${this.urlBase}cliente-con-correo`,{
+    correo: correo
+  });
+}
 }
