@@ -1,5 +1,5 @@
 <body class="bg-white text-center">
-
+    <div id = "planes">
     <h1 class="text-4xl font-bold mt-10 text-purple">Elige tu plan</h1>
     <p class="text-lg mt-2 mb-6">Asegura la tranquilidad de tus seres queridos con nuestros planes de funeraria personalizados</p>
     
@@ -91,9 +91,55 @@
                 <input type="radio" name="plan" class="w-6 h-6 text-purple-700"/>
             </div>
         </div>-->
+
+    <!-- adquirir-plan.component.html -->
+    
     
     <div class="mt-6 mb-6">
-        <button (click)="RedigirirARegistroOIngreso()" (click)="ContinuarConPlanSeleccionado()" class="px-6 py-3 bg-purple-700 hover:bg-purple-900 text-white font-bold rounded focus:outline-none">Continuar</button>
+        <button (click)="RedigirirARegistroOIngreso()" (click)="ContinuarConPlanSeleccionado()" (click)="ocultarPlanes()" class="px-6 py-3 bg-purple-700 hover:bg-purple-900 text-white font-bold rounded focus:outline-none">Continuar</button>
     </div>
+</div>
+
+<div id="metodosPago" class="bg-gray-100 flex items-center justify-center w-full h-1/3" style="display: none;">
+    <form [formGroup]="formularioPago"  class="bg-purple-100 p-6 rounded-lg w-3/4">
+        <div class="form-group mb-4">
+            <label class="block text-purple-700 text-4xl font-bold mb-2">Seleccione un método de pago</label>
+            <div class="bg-purple-200 p-4 rounded-lg">
+                <div class="grid grid-cols-5 gap-4 mb-2">
+                    <div class="col-span-1 text-purple-700 font-bold">Seleccionar</div>
+                    <div class="col-span-1 text-purple-700 font-bold">Método</div>
+                    <div class="col-span-1 text-purple-700 font-bold">Estado</div>
+                    <div class="col-span-1 text-purple-700 font-bold">Cliente</div>
+                </div>
+                <div *ngFor="let metodo of metodosPago" class="grid grid-cols-5 gap-4 mb-2 bg-purple-100 p-4 rounded-lg">
+                    <div class="col-span-1">
+                        <input type="radio" [value]="metodo.idMetodoPagoCliente" formControlName="metodoPago" class="form-radio text-purple-600 h-4 w-4" id="radioMetodoPago">
+                    </div>
+                    <div class="col-span-1">
+                        <label class="ml-2 text-gray-700 block" [for]="metodo.datos">{{ metodo.datos }}</label>
+                    </div>
+                    <div class="col-span-1">
+                        <p class="text-gray-700">{{ metodo.estado }}</p>
+                    </div>
+                    <div class="col-span-1">
+                        <p class="text-gray-700">{{ metodo.clienteId }}</p>
+                    </div>
+                    <div class="col-span-1">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M6 14h2m3 0h5M3 7v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1Z"/>
+                          </svg>                          
+                    </div>
+                </div>
+                <div class="grid grid-cols-5 gap-4 mb-2 bg-purple-100 p-4 rounded-lg">
+                    <div class="grid col-span-5 text-purple-700 font-bold cursor-pointer" routerLink="/parametros/crear-metodo-pago">
+                        + Agregar método de pago
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Agrega aquí más campos de formulario para los detalles de pago -->
+        <button type="submit" (click)="Pagar()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Pagar</button>
+    </form>
+</div>
 
 </body>

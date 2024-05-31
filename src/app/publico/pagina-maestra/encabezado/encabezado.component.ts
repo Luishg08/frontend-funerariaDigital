@@ -37,6 +37,7 @@ export class EncabezadoComponent {
 
   ngOnInit(): void {
     // initFlowbite();
+    this.VerificarSiTieneClienteYPlan1()
     this.ValidarSesion();
   }
 
@@ -64,6 +65,7 @@ export class EncabezadoComponent {
       next: (datos:ClienteModel) =>{
         console.log("datos ",datos);
         if(datos.documento){
+          this.yatieneCliente=true;
           localStorage.setItem("datos-cliente",JSON.stringify(datos));
           console.log("ya tiene cliente desde nav");
           
@@ -92,6 +94,57 @@ export class EncabezadoComponent {
           this.yaTienePlan=true;
           console.log("ya tiene plan desde nav");
           this.router.navigate(['/parametros/solicitar-servicio-funerario']);
+          console.log(datos);
+          
+        }
+      },error:(err:any)=>{
+        console.log(err);
+      }
+    })
+    console.log("ya tiene cliente",yaTieneCliente);
+    console.log("ya tiene plan",this.yaTienePlan);
+    
+    
+  }
+
+  VerificarSiTieneClienteYPlan1(){
+    let yaTieneCliente=false;
+    let idUsuario= this.servicioParametros.ObtenerIdUsuarioLS();
+    if(!idUsuario){
+      return;
+    }
+    this.servicioParametros.VerificarSiYaTieneCliente(idUsuario).subscribe({
+      next: (datos:ClienteModel) =>{
+        console.log("datos ",datos);
+        if(datos.documento){
+          this.yatieneCliente=true;
+          localStorage.setItem("datos-cliente",JSON.stringify(datos));
+          console.log("ya tiene cliente desde nav");
+          
+        }else{
+          console.log("no tiene cliente desde nav");
+          this.router.navigate(['/parametros/crear-cliente']);
+         
+        }
+      },error:(err:any)=>{
+        console.log(err);
+      }
+    })
+
+    this.servicioParametros.ObtenerClientePlanActivo(idUsuario).subscribe({
+      next: (datos:ClientePlanModel|boolean) =>{
+        if(datos == false){
+          this.yaTienePlan=false;
+          console.log("no tiene plan desde nav");
+          if(this.rutaActual !== "/parametros/crear-cliente"){
+          this.router.navigate(['/parametros/adquirir-plan']);
+          console.log(datos);
+          return
+          }
+        }
+        else{
+          this.yaTienePlan=true;
+          console.log("ya tiene plan desde nav");
           console.log(datos);
           
         }
