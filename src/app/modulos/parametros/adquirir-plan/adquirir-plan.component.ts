@@ -6,6 +6,8 @@ import { ParametrosService } from '../../../servicios/parametros.service';
 import { ClienteModel } from '../../../modelos/cliente.model';
 import { PlanModel } from '../../../modelos/plan.model';
 import { ClientePlanModel } from '../../../modelos/cliente.plan.model';
+import { FormBuilder } from '@angular/forms';
+import { MetodosPagoCliente } from '../../../modelos/metodos.pago.cliente.model';
 
 
 @Component({
@@ -15,25 +17,80 @@ import { ClientePlanModel } from '../../../modelos/cliente.plan.model';
   styleUrl: './adquirir-plan.component.css'
 })
 export class AdquirirPlanComponent {
+  metodosPago: MetodosPagoCliente[] = [];
   sesionActiva: boolean = false;
   yatieneCliente: boolean = false;
   planesmensual: boolean = true;
   planesanual: boolean = false;
+  idPlanSeleccionado:any
+
+
+  formularioPago = this.fb.group({
+    metodoPago: [''],
+    numeroTarjeta: [''],
+    fechaVencimiento: [''],
+    cvv: ['']
+  });
 
   constructor(
     private servicioSeguridad: SeguridadService,
     private router: Router,
-    private servicioParametros: ParametrosService
+    private servicioParametros: ParametrosService,
+    private fb : FormBuilder
   ) { }
 
   ngOnInit() {
     this.ValidarSesion();
+    this.mostrarPlanesMensual();
     this.VerificarSiYaTieneCliente();
     this.ObtenerPlanes()
-    this.mostrarPlanesMensual();
+
     
   }
 
+ocultarPlanes(){
+  let selectRadioSeleccionado = document.querySelector('input[name="plan"]:checked') as HTMLInputElement;
+  if(!selectRadioSeleccionado){
+    alert("Debe seleccionar un plan");
+    return;
+  }
+  let idPlan = selectRadioSeleccionado!.value
+  let planSeleccionado = this.planes.find(plan => plan.id == idPlan); 
+  this.idPlanSeleccionado = planSeleccionado!.id;
+  console.log("idPlanSeleccionado",this.idPlanSeleccionado);
+  let selectPlanes = document.getElementById("planes") as HTMLDivElement;
+  selectPlanes!.style.display = "none";
+  let selectMetodosPago = document.getElementById("metodosPago") as HTMLDivElement;
+  selectMetodosPago!.style.display = "flex";
+}
+
+Pagar(){
+  let selectRadioSeleccionado = document.querySelector('input[id="radioMetodoPago"]:checked') as HTMLInputElement;
+  if(!selectRadioSeleccionado){
+    alert("Debe seleccionar un metodo de pago");
+    return;
+  }
+  let esanual = false
+  let idPlan = this.idPlanSeleccionado
+  let planSeleccionado = this.planes.find(plan => plan.id == idPlan);
+  let tarifa: any = planSeleccionado!.mensualidad
+  if(this.planesanual){
+    tarifa = (tarifa*12)*0.75
+    esanual = true
+  }
+  this.servicioParametros.AdquirirPlan(idPlan, JSON.parse(localStorage.getItem("datos-cliente")!),tarifa, esanual).subscribe({
+    next:(data:ClientePlanModel)=>{
+      console.log(data);
+      alert("Plan adquirido con exito");
+      this.router.navigate(['/inicio']);
+    },
+    error: (err) => {
+      alert("No se pudo adquirir el plan");
+    }
+  });
+  console.log("Este es el id del plan seleccionado",idPlan);
+  alert("Ha seleccionado el plan con id "+idPlan);
+}
   RedigirirARegistroOIngreso(){
     if(this.sesionActiva==false){
       this.router.navigate(['/seguridad/identificar-usuario']);
@@ -96,34 +153,18 @@ ObtenerPlanes(){
 }
 
 ContinuarConPlanSeleccionado(){
-  let selectRadioSeleccionado = document.querySelector('input[name="plan"]:checked') as HTMLInputElement;
-  if(selectRadioSeleccionado){
-    let esanual = false
-    let idPlan = selectRadioSeleccionado!.value
-    let planSeleccionado = this.planes.find(plan => plan.id == idPlan); 
-     let tarifa: any = planSeleccionado!.mensualidad
-     if(this.planesanual){
-      tarifa = (tarifa*12)*0.75
-      esanual = true
-     }
-    this.servicioParametros.AdquirirPlan(idPlan, JSON.parse(localStorage.getItem("datos-cliente")!),tarifa, esanual).subscribe({
-      next:(data:ClientePlanModel)=>{
-        console.log(data);
-        alert("Plan adquirido con exito");
-        this.router.navigate(['/inicio']);
-      },
-      error: (err) => {
-        alert("No se pudo adquirir el plan");
-      }
-    });
-    console.log("Este es el id del plan seleccionado",idPlan);
-    alert("Ha seleccionado el plan con id "+idPlan);
-  }
-  else{
-    alert("Debe seleccionar un plan");
-    return;
-  }
-
+  
+  this.servicioParametros.obtenermetodospagocliente(this.servicioParametros.ObtenerIdUsuarioLS()!).subscribe({
+    next:(data:MetodosPagoCliente[])=>{
+      this.metodosPago = data;
+    },
+    error: (err) => {
+      alert("No se pudo listar los metodos de pago");
+    }
+  });
+  
+  
+  
 }
 
 mostrarPlanesMensual(){
