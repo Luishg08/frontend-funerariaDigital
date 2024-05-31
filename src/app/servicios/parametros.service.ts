@@ -13,6 +13,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { PlanModel } from '../modelos/plan.model';
 import { ClientePlanModel } from '../modelos/cliente.plan.model';
 import { MetodosPagoCliente } from '../modelos/metodos.pago.cliente.model';
+import e from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -151,6 +152,28 @@ AdquirirPlan(idPlan:string,dato:ClienteModel, precio:any, esanual:boolean):Obser
 obtenermetodospagocliente(idUsuario:string):Observable<MetodosPagoCliente[]>{
   return this.http.post<MetodosPagoCliente[]>(`${this.urlBase}metodos-de-pago-de-un-cliente`,{
     idUsuario: idUsuario
+  });
+}
+
+crearMetodoPagoCliente(tipo:string, datos:string, cvv:string, cliente:ClienteModel):Observable<MetodosPagoCliente>{
+  let idMetodoPago = 0
+  if(tipo = "DEBITO"){
+    idMetodoPago = 6
+  }
+  else if(tipo = "CREDITO"){
+    idMetodoPago = 5
+  }
+  console.log(cliente.id_cliente + "Este es el cliente");
+  console.log(idMetodoPago + "Este es el metodo de pago");
+  console.log(datos + "Estos son los datos");
+  console.log(cvv + "Este es el cvv");
+  
+  return this.http.post<MetodosPagoCliente>(`${this.urlBase}metodo-pago-cliente`,{
+    metodoPagoId: idMetodoPago,
+    datos: datos,
+    cvv: cvv,
+    estado: "Activo",
+    clienteId: Number(cliente.id_cliente)
   });
 }
 
