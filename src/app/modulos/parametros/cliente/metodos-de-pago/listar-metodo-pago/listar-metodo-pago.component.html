@@ -1,6 +1,9 @@
 <div class="relative overflow-x-auto my-8 mx-4">
+    <!-- Título de la tabla centrado y más grande -->
+    <h2 class="text-3xl font-bold text-center mb-4 text-purple-900">Métodos de Pago</h2>
+    
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-collapse border border-gray-200">
-        <thead class="text-xs text-white uppercase bg-purple-700 dark:bg-purple-800">
+        <thead class="text-xs text-white uppercase bg-purple-900 dark:bg-purple-800">
             <tr>
                 <th scope="col" class="px-6 py-3 border border-gray-300">
                     Tipo
@@ -49,4 +52,10 @@
             </tr>
         </tbody>
     </table>
-</div>
+  
+    <div class="flex justify-end mt-4">
+        <button (click)="redirigirACrearMetodoPago()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+            Agregar método de pago
+        </button>
+    </div>
+  </div>

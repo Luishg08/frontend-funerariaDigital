@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
-import { MetodosPagoCliente } from '../../../../modelos/metodos.pago.cliente.model';
-import { ParametrosService } from '../../../../servicios/parametros.service';
+import { MetodosPagoCliente } from '../../../../../modelos/metodos.pago.cliente.model';
+import { ParametrosService } from '../../../../../servicios/parametros.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-metodos-pago',
+  selector: 'app-listar-metodo-pago',
   standalone: false,
-  templateUrl: './metodos-pago.component.html',
-  styleUrl: './metodos-pago.component.css'
+  templateUrl: './listar-metodo-pago.component.html',
+  styleUrl: './listar-metodo-pago.component.css'
 })
-export class MetodosPagoComponent {
-  
+export class ListarMetodoPagoComponent {
+
   metodosPagos:MetodosPagoCliente[]= [];
 
   constructor(
-    private servicioParametros: ParametrosService
+    private servicioParametros: ParametrosService,
+    private router: Router
   ){}
 
   ngOnInit() {
@@ -33,5 +35,9 @@ export class MetodosPagoComponent {
         }
       })
     }
+  }
+
+  redirigirACrearMetodoPago() {
+    this.router.navigate(['/parametros/crear-metodo-pago']);
   }
 }

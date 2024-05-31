@@ -1,0 +1,23 @@
+<div class="container mx-auto max-w-md p-10 h-max bg-nav mt-10 rounded-xl mb-10">
+    <h1 class="text-3xl font-junge text-moradoTitulo font-bold text-center mt-3 mb-7">Agregar Método de Pago</h1>
+    <form [formGroup]="fGroup" class="mt-2">
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <select formControlName="tipo" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+                <option value="" disabled selected>Seleccione el tipo</option>
+                <option value="DEBITO">DEBITO</option>
+                <option value="CREDITO">CREDITO</option>
+            </select>
+        </div>
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <input formControlName="datos" id="datos" type="text" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Número de tarjeta" required>
+        </div>
+        <div class="flex items-center border-b border-gray-300 py-2 m-5">
+            <input formControlName="cvv" id="cvv" type="text" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="CVV" required>
+        </div>
+        <div class="mb-4">
+            <button class="bg-moradoOscuro hover:bg-purple-900 text-white font-bold py-2 px-3 rounded w-full" type="button">
+                Agregar
+            </button>
+        </div>
+    </form>
+</div>

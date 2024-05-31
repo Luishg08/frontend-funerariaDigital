@@ -4,7 +4,9 @@ import { SolicitarServicioFunerarioComponent } from './solicitar-servicio-funera
 import { AdquirirPlanComponent } from './adquirir-plan/adquirir-plan.component';
 import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente.component';
 import { MisBeneficiariosComponent } from './cliente/mis-beneficiarios/mis-beneficiarios.component';
-import { MetodosPagoComponent } from './cliente/metodos-pago/metodos-pago.component';
+import { ListarClienteComponent } from './cliente/listar-cliente/listar-cliente.component';
+import { CrearMetodoPagoComponent } from './cliente/metodos-de-pago/crear-metodo-pago/crear-metodo-pago.component';
+import { ListarMetodoPagoComponent } from './cliente/metodos-de-pago/listar-metodo-pago/listar-metodo-pago.component';
 
 const routes: Routes = [
   {
@@ -25,7 +27,12 @@ const routes: Routes = [
   },
   {
     path:'mis-metodos-de-pago',
-    component: MetodosPagoComponent
+    component: ListarMetodoPagoComponent
+  },
+  {
+    path: 'crear-metodo-pago',
+    component: CrearMetodoPagoComponent
+
   }
 ];
 

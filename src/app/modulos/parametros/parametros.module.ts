@@ -9,7 +9,8 @@ import { AdquirirPlanComponent } from './adquirir-plan/adquirir-plan.component';
 import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente.component';
 import { MisBeneficiariosComponent } from './cliente/mis-beneficiarios/mis-beneficiarios.component';
 import { EncabezadoComponent } from '../../publico/pagina-maestra/encabezado/encabezado.component';
-import { MetodosPagoComponent } from './cliente/metodos-pago/metodos-pago.component';
+import { ListarMetodoPagoComponent } from './cliente/metodos-de-pago/listar-metodo-pago/listar-metodo-pago.component';
+import { CrearMetodoPagoComponent } from './cliente/metodos-de-pago/crear-metodo-pago/crear-metodo-pago.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MetodosPagoComponent } from './cliente/metodos-pago/metodos-pago.compon
     SolicitarServicioFunerarioComponent,
     CrearClienteComponent, 
     MisBeneficiariosComponent,
-    MetodosPagoComponent
+    ListarMetodoPagoComponent,
+    CrearMetodoPagoComponent
   ],
   imports: [
     CommonModule,
